@@ -1,382 +1,802 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tenda das Balas - Balas Personalizadas</title>
-  <style>
-    :root {
-      --primary: #ff477e;
-      --secondary: #ff70a6;
-      --dark: #2b2d42;
-      --light: #f8f9fa;
-      --gray: #6c757d;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    body { background-color: var(--light); color: var(--dark); padding-bottom: 60px; }
-
-    /* Header */
-    header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
-    .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
-    .logo { font-size: 24px; font-weight: bold; color: var(--primary); text-decoration: none; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenda Balas | Balas Tradicionais e Personalizadas para Empresas</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    .cart-btn-header { position: relative; background: var(--primary); color: white; border: none; padding: 10px 18px; border-radius: 20px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 8px; }
-    .cart-count { background: white; color: var(--primary); border-radius: 50%; padding: 2px 7px; font-size: 12px; }
+    <style>
+        :root {
+            --primary: #e63946;
+            --secondary: #f1faee;
+            --accent: #ffb703;
+            --dark: #1d3557;
+            --whatsapp: #25d366;
+        }
 
-    /* Hero / Banner */
-    .hero { background: linear-gradient(135deg, #ff70a6 0%, #ff477e 100%); color: white; text-align: center; padding: 50px 20px; }
-    .hero h1 { font-size: 32px; margin-bottom: 10px; }
-    .hero p { font-size: 18px; opacity: 0.9; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
 
-    /* Bloco Atacado / Acima de 3000 Unidades */
-    .wholesale-section { background: #fff3f6; border: 2px dashed var(--primary); border-radius: 12px; padding: 25px; margin: 30px auto; max-width: 1160px; text-align: center; }
-    .wholesale-title { font-size: 22px; color: var(--primary); margin-bottom: 10px; font-weight: bold; }
-    .wholesale-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 15px; }
-    .wholesale-badge { background: white; padding: 12px 20px; border-radius: 8px; border: 1px solid #ffd1dc; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            padding-bottom: 80px;
+        }
 
-    /* Vitrine de Produtos */
-    .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
-    .section-title { text-align: center; font-size: 28px; margin-bottom: 30px; color: var(--dark); }
-    
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-    .product-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.2s; cursor: pointer; display: flex; flex-direction: column; }
-    .product-card:hover { transform: translateY(-5px); }
-    .product-img { width: 100%; height: 220px; object-fit: cover; }
-    .product-info { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
-    .product-title { font-size: 18px; margin-bottom: 8px; font-weight: 600; }
-    .product-price { font-size: 20px; color: var(--primary); font-weight: bold; margin-bottom: 12px; }
-    .btn-details { background: #f0f0f0; color: var(--dark); border: none; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: auto; }
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    /* Modal de Detalhes / Galeria */
-    .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
-    .modal.active { display: flex; }
-    .modal-content { background: white; border-radius: 12px; max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 25px; position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    @media(max-width: 768px){ .modal-content { grid-template-columns: 1fr; } }
-    .close-modal { position: absolute; top: 15px; right: 15px; font-size: 24px; cursor: pointer; border: none; background: none; }
-    
-    .main-modal-img { width: 100%; height: 280px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
-    .gallery-thumbs { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; }
-    .thumb-img { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 2px solid transparent; }
-    .thumb-img.active { border-color: var(--primary); }
+        header .header-info {
+            text-align: left;
+        }
 
-    /* Carrinho Drawer */
-    .cart-drawer { display: none; position: fixed; top:0; right:0; width: 100%; max-width: 420px; height: 100%; background: white; z-index: 1001; box-shadow: -5px 0 15px rgba(0,0,0,0.1); padding: 20px; flex-direction: column; }
-    .cart-drawer.active { display: flex; }
-    .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-    .cart-items { flex-grow: 1; overflow-y: auto; margin: 15px 0; }
-    .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #f9f9f9; padding-bottom: 10px; }
-    
-    /* Frete */
-    .freight-box { background: var(--light); padding: 15px; border-radius: 8px; margin-bottom: 15px; }
-    .freight-box input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 60%; }
-    .freight-box button { padding: 8px; background: var(--dark); color: white; border: none; border-radius: 4px; cursor: pointer; }
-    .freight-option { margin-top: 8px; font-size: 13px; display: flex; justify-content: space-between; background: white; padding: 8px; border-radius: 4px; border: 1px solid #ddd; }
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
 
-    .btn-checkout { background: #25d366; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer; font-size: 16px; text-align: center; text-decoration: none; display: block; }
-  </style>
+        .cart-btn-header {
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .cart-count {
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 0.8rem;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(29, 53, 87, 0.7), rgba(29, 53, 87, 0.7)), 
+                        url('https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=1200&q=80') center/cover;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-main {
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .btn-main:hover {
+            transform: scale(1.05);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 15px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.6rem;
+            color: var(--dark);
+            margin-bottom: 25px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .card-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .custom-box {
+            background: #ffffff;
+            border: 2px dashed var(--primary);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .alert-info {
+            background-color: #e8f4fd;
+            color: #1d3557;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .insta-banner {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+
+        .insta-banner a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--whatsapp);
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 32px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 40px;
+        }
+
+        /* --- NOVOS RECURSOS ADICIONADOS --- */
+
+        /* Modal da Galeria de Fotos */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal-container {
+            background: white;
+            border-radius: 12px;
+            max-width: 750px;
+            width: 100%;
+            padding: 25px;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media(max-width: 650px) {
+            .modal-container { grid-template-columns: 1fr; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px; right: 15px;
+            font-size: 1.8rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .modal-main-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .modal-thumbs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .thumb-img {
+            width: 55px;
+            height: 55px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .thumb-img.active {
+            border-color: var(--primary);
+        }
+
+        /* Lateral do Carrinho (Drawer) */
+        .cart-drawer {
+            display: none;
+            position: fixed;
+            top: 0; right: 0;
+            width: 100%; max-width: 400px; height: 100%;
+            background: white;
+            z-index: 2001;
+            box-shadow: -4px 0 15px rgba(0,0,0,0.2);
+            padding: 20px;
+            flex-direction: column;
+        }
+
+        .cart-drawer.active { display: flex; }
+
+        .cart-header-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .cart-items-list {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin: 15px 0;
+        }
+
+        .cart-item-single {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .freight-box {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+        }
+
+        .freight-result-item {
+            font-size: 0.85rem;
+            margin-top: 8px;
+            padding: 6px;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <div class="header-container">
-      <a href="#" class="logo">Tenda das Balas</a>
-      <button class="cart-btn-header" onclick="toggleCart()">
-        🛒 Carrinho <span class="cart-count" id="cartCount">0</span>
-      </button>
-    </div>
-  </header>
-
-  <section class="hero">
-    <h1>Balas Personalizadas para Eventos e Empresas</h1>
-    <p>Adoce momentos especiais com frases e marcas exclusivas!</p>
-  </section>
-
-  <!-- Informação Restaurada de Atacado / Grandes Quantidades -->
-  <div class="wholesale-section">
-    <div class="wholesale-title">🍬 CONDIÇÕES ESPEICIAIS PARA ATACADO (Acima de 3.000 unidades)</div>
-    <p>Atendemos grandes eventos, casamentos e ações corporativas com preços diferenciados e orçamento sob medida!</p>
-    <div class="wholesale-grid">
-      <div class="wholesale-badge">📦 <strong>3.000 a 5.000 un.</strong>: Desconto de 15%</div>
-      <div class="wholesale-badge">📦 <strong>5.001 a 10.000 un.</strong>: Desconto de 25%</div>
-      <div class="wholesale-badge">✈️ <strong>Acima de 10.000 un.</strong>: Frete Grátis + Arte Exclusiva</div>
-    </div>
-  </div>
-
-  <main class="container">
-    <h2 class="section-title">Nossos Produtos</h2>
-    <div class="products-grid" id="productsGrid"></div>
-  </main>
-
-  <!-- Modal Detalhes do Produto (Galeria de 4 Fotos) -->
-  <div class="modal" id="productModal">
-    <div class="modal-content">
-      <button class="close-modal" onclick="closeModal()">&times;</button>
-      <div>
-        <img src="" id="modalMainImg" class="main-modal-img" alt="Produto">
-        <div class="gallery-thumbs" id="modalThumbs"></div>
-      </div>
-      <div>
-        <h2 id="modalTitle" style="margin-bottom: 10px;"></h2>
-        <div id="modalPrice" style="font-size: 24px; color: var(--primary); font-weight: bold; margin-bottom: 15px;"></div>
-        <p id="modalDesc" style="color: var(--gray); margin-bottom: 20px; line-height: 1.5;"></p>
-        <button class="btn-checkout" style="background: var(--primary);" onclick="addToCartFromModal()">Adicionar ao Carrinho</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Drawer Carrinho de Compras -->
-  <div class="cart-drawer" id="cartDrawer">
-    <div class="cart-header">
-      <h3>Seu Carrinho</h3>
-      <button class="close-modal" onclick="toggleCart()">&times;</button>
-    </div>
-    
-    <div class="cart-items" id="cartItems">
-      <p style="text-align: center; color: var(--gray);">Seu carrinho está vazio.</p>
-    </div>
-
-    <!-- Cálculo de Frete e Prazos de Entrega -->
-    <div class="freight-box">
-      <label style="font-size: 13px; font-weight: bold; display: block; margin-bottom: 5px;">Calcular Frete & Prazo (CEP):</label>
-      <div style="display: flex; gap: 5px;">
-        <input type="text" id="cepInput" placeholder="Ex: 01001-000" maxlength="9">
-        <button onclick="calculateFreight()">Calcular</button>
-      </div>
-      <div id="freightResults" style="margin-top: 10px;"></div>
-    </div>
-
-    <div style="border-top: 1px solid #eee; padding-top: 15px; margin-bottom: 15px;">
-      <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 18px;">
-        <span>Total:</span>
-        <span id="cartTotal">R$ 0,00</span>
-      </div>
-    </div>
-
-    <a href="#" class="btn-checkout" id="whatsappCheckout" target="_blank" onclick="sendWhatsApp()">Finalizar Pedido no WhatsApp</a>
-  </div>
-
-  <script>
-    // 6 Produtos com 4 fotos cada para galeria
-    const products = [
-      {
-        id: 1,
-        title: "Balas Personalizadas Frases Motivacionais",
-        price: 49.90,
-        desc: "Pacote com 100 balas de sabores sortidos envelopadas com frases inspiradoras para encantar seus clientes.",
-        images: [
-          "https://picsum.photos/400/300?random=1",
-          "https://picsum.photos/400/300?random=11",
-          "https://picsum.photos/400/300?random=12",
-          "https://picsum.photos/400/300?random=13"
-        ]
-      },
-      {
-        id: 2,
-        title: "Balas Corporativas com Logotipo",
-        price: 89.90,
-        desc: "Ideal para recepções, escritórios e brindes. Impressão em altíssima qualidade com a sua marca.",
-        images: [
-          "https://picsum.photos/400/300?random=2",
-          "https://picsum.photos/400/300?random=21",
-          "https://picsum.photos/400/300?random=22",
-          "https://picsum.photos/400/300?random=23"
-        ]
-      },
-      {
-        id: 3,
-        title: "Balas para Aniversários e Festas",
-        price: 59.90,
-        desc: "Personalizamos com o tema da sua festa, nome e idade do aniversariante.",
-        images: [
-          "https://picsum.photos/400/300?random=3",
-          "https://picsum.photos/400/300?random=31",
-          "https://picsum.photos/400/300?random=32",
-          "https://picsum.photos/400/300?random=33"
-        ]
-      },
-      {
-        id: 4,
-        title: "Balas Menta 'Obrigado Pela Compra'",
-        price: 39.90,
-        desc: "Balas e cartões mimos para colocar dentro dos pacotes de envio do seu e-commerce.",
-        images: [
-          "https://picsum.photos/400/300?random=4",
-          "https://picsum.photos/400/300?random=41",
-          "https://picsum.photos/400/300?random=42",
-          "https://picsum.photos/400/300?random=43"
-        ]
-      },
-      {
-        id: 5,
-        title: "Kit Balas Casamento Elegante",
-        price: 99.90,
-        desc: "Embalagens sofisticadas em tons pastéis com monograma dos noivos e acabamento premium.",
-        images: [
-          "https://picsum.photos/400/300?random=5",
-          "https://picsum.photos/400/300?random=51",
-          "https://picsum.photos/400/300?random=52",
-          "https://picsum.photos/400/300?random=53"
-        ]
-      },
-      {
-        id: 6,
-        title: "Balas Temáticas Datas Comemorativas",
-        price: 54.90,
-        desc: "Edições especiais para Dia das Mães, Natal, Páscoa e Dia dos Namorados.",
-        images: [
-          "https://picsum.photos/400/300?random=6",
-          "https://picsum.photos/400/300?random=61",
-          "https://picsum.photos/400/300?random=62",
-          "https://picsum.photos/400/300?random=63"
-        ]
-      }
-    ];
-
-    let cart = [];
-    let selectedProduct = null;
-    let selectedFreightCost = 0;
-
-    // Renderizar Vitrine
-    const grid = document.getElementById('productsGrid');
-    products.forEach(p => {
-      grid.innerHTML += `
-        <div class="product-card" onclick="openModal(${p.id})">
-          <img src="${p.images[0]}" class="product-img" alt="${p.title}">
-          <div class="product-info">
-            <div class="product-title">${p.title}</div>
-            <div class="product-price">R$ ${p.price.toFixed(2).replace('.',',')}</div>
-            <button class="btn-details">Ver Fotos & Detalhes</button>
-          </div>
+    <header>
+        <div class="header-info">
+            <h1>TENDA BALAS</h1>
+            <p style="font-size: 0.85rem; opacity: 0.9;">tendabalas.com.br</p>
         </div>
-      `;
-    });
+        <button class="cart-btn-header" onclick="toggleCartDrawer()">
+            <i class="fa-solid fa-cart-shopping"></i> Carrinho <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </header>
 
-    // Modal / Galeria
-    function openModal(id) {
-      selectedProduct = products.find(p => p.id === id);
-      document.getElementById('modalTitle').innerText = selectedProduct.title;
-      document.getElementById('modalPrice').innerText = `R$ ${selectedProduct.price.toFixed(2).replace('.',',')}`;
-      document.getElementById('modalDesc').innerText = selectedProduct.desc;
-      
-      const mainImg = document.getElementById('modalMainImg');
-      mainImg.src = selectedProduct.images[0];
+    <section class="hero">
+        <h2>As melhores balas direto para você</h2>
+        <p>Balas tradicionais, mastigáveis e personalizadas com a logo da sua empresa.</p>
+        <a href="#personalizados" class="btn-main"><i class="fa-solid fa-paintbrush"></i> Faça Balas Personalizadas</a>
+    </section>
 
-      const thumbs = document.getElementById('modalThumbs');
-      thumbs.innerHTML = '';
-      selectedProduct.images.forEach((img, index) => {
-        thumbs.innerHTML += `<img src="${img}" class="thumb-img ${index === 0 ? 'active' : ''}" onclick="changeModalImg('${img}', this)">`;
-      });
+    <div class="container">
 
-      document.getElementById('productModal').classList.add('active');
-    }
-
-    function changeModalImg(src, element) {
-      document.getElementById('modalMainImg').src = src;
-      document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
-      element.classList.add('active');
-    }
-
-    function closeModal() {
-      document.getElementById('productModal').classList.remove('active');
-    }
-
-    // Carrinho
-    function toggleCart() {
-      document.getElementById('cartDrawer').classList.toggle('active');
-    }
-
-    function addToCartFromModal() {
-      cart.push(selectedProduct);
-      updateCart();
-      closeModal();
-      toggleCart();
-    }
-
-    function updateCart() {
-      document.getElementById('cartCount').innerText = cart.length;
-      const cartItems = document.getElementById('cartItems');
-      
-      if(cart.length === 0) {
-        cartItems.innerHTML = '<p style="text-align: center; color: var(--gray);">Seu carrinho está vazio.</p>';
-        document.getElementById('cartTotal').innerText = 'R$ 0,00';
-        return;
-      }
-
-      cartItems.innerHTML = '';
-      let subtotal = 0;
-      cart.forEach((item, index) => {
-        subtotal += item.price;
-        cartItems.innerHTML += `
-          <div class="cart-item">
-            <div>
-              <strong>${item.title}</strong>
-              <div style="font-size: 14px; color: var(--primary);">R$ ${item.price.toFixed(2).replace('.',',')}</div>
+        <h2 class="section-title">Nossos Produtos em Destaque</h2>
+        <div class="grid">
+            
+            <!-- Produto 1 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=500&q=80" alt="Bala Mastigável Frutas" onclick="openGallery(0)">
+                <div class="card-body">
+                    <h3 class="card-title">Bala Mastigável Sortida (Pacote 600g)</h3>
+                    <p class="card-price">R$ 18,90</p>
+                    <button class="btn-main" style="width:100%; margin-bottom:5px;" onclick="addToCart(0)">Comprar Agora</button>
+                    <button class="btn-main" style="width:100%; background-color:#e0e0e0; color:#333;" onclick="openGallery(0)">Ver Fotos</button>
+                </div>
             </div>
-            <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer; font-size: 18px;">&times;</button>
-          </div>
-        `;
-      });
 
-      const total = subtotal + selectedFreightCost;
-      document.getElementById('cartTotal').innerText = `R$ ${total.toFixed(2).replace('.',',')}`;
-    }
+            <!-- Produto 2 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1575224300306-1b8da36134ec?auto=format&fit=crop&w=500&q=80" alt="Bala Dura Hortelã" onclick="openGallery(1)">
+                <div class="card-body">
+                    <h3 class="card-title">Bala Dura Refrescante Hortelã (500g)</h3>
+                    <p class="card-price">R$ 15,50</p>
+                    <button class="btn-main" style="width:100%; margin-bottom:5px;" onclick="addToCart(1)">Comprar Agora</button>
+                    <button class="btn-main" style="width:100%; background-color:#e0e0e0; color:#333;" onclick="openGallery(1)">Ver Fotos</button>
+                </div>
+            </div>
 
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCart();
-    }
+            <!-- Produto 3 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1621939514649-280e2ee25f60?auto=format&fit=crop&w=500&q=80" alt="Gomas e Jujubas" onclick="openGallery(2)">
+                <div class="card-body">
+                    <h3 class="card-title">Goma de Mascar / Jujuba Colorida (1kg)</h3>
+                    <p class="card-price">R$ 28,00</p>
+                    <button class="btn-main" style="width:100%; margin-bottom:5px;" onclick="addToCart(2)">Comprar Agora</button>
+                    <button class="btn-main" style="width:100%; background-color:#e0e0e0; color:#333;" onclick="openGallery(2)">Ver Fotos</button>
+                </div>
+            </div>
 
-    // Calculadora de Frete com Prazos Explicitos
-    function calculateFreight() {
-      const cep = document.getElementById('cepInput').value.replace(/\D/g, '');
-      const container = document.getElementById('freightResults');
+            <!-- Produto 4 (Novo) -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1581798459219-318e76aecc7b?auto=format&fit=crop&w=500&q=80" alt="Bala Toffee Caramelo" onclick="openGallery(3)">
+                <div class="card-body">
+                    <h3 class="card-title">Bala Toffee Caramelo Premium (500g)</h3>
+                    <p class="card-price">R$ 24,90</p>
+                    <button class="btn-main" style="width:100%; margin-bottom:5px;" onclick="addToCart(3)">Comprar Agora</button>
+                    <button class="btn-main" style="width:100%; background-color:#e0e0e0; color:#333;" onclick="openGallery(3)">Ver Fotos</button>
+                </div>
+            </div>
 
-      if(cep.length === 8) {
-        // Simulação de opções de envio com prazos em dias úteis
-        container.innerHTML = `
-          <div class="freight-option" onclick="selectFreight(18.50)">
-            <span><strong>PAC (Econômico):</strong> R$ 18,50</span>
-            <span>📅 5 a 8 dias úteis</span>
-          </div>
-          <div class="freight-option" onclick="selectFreight(32.90)">
-            <span><strong>SEDEX (Expresso):</strong> R$ 32,90</span>
-            <span>🚀 2 a 3 dias úteis</span>
-          </div>
-        `;
-        selectFreight(18.50); // Padrão PAC
-      } else {
-        alert('Por favor, digite um CEP válido com 8 dígitos.');
-      }
-    }
+            <!-- Produto 5 (Novo) -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1532117892862-274641617300?auto=format&fit=crop&w=500&q=80" alt="Bala de Café Espacial" onclick="openGallery(4)">
+                <div class="card-body">
+                    <h3 class="card-title">Bala de Café Gourmet Intenso (400g)</h3>
+                    <p class="card-price">R$ 21,00</p>
+                    <button class="btn-main" style="width:100%; margin-bottom:5px;" onclick="addToCart(4)">Comprar Agora</button>
+                    <button class="btn-main" style="width:100%; background-color:#e0e0e0; color:#333;" onclick="openGallery(4)">Ver Fotos</button>
+                </div>
+            </div>
 
-    function selectFreight(val) {
-      selectedFreightCost = val;
-      updateCart();
-    }
+            <!-- Produto 6 (Novo) -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80" alt="Kit Balas de Canela" onclick="openGallery(5)">
+                <div class="card-body">
+                    <h3 class="card-title">Bala Dura de Canela Picante (500g)</h3>
+                    <p class="card-price">R$ 16,90</p>
+                    <button class="btn-main" style="width:100%; margin-bottom:5px;" onclick="addToCart(5)">Comprar Agora</button>
+                    <button class="btn-main" style="width:100%; background-color:#e0e0e0; color:#333;" onclick="openGallery(5)">Ver Fotos</button>
+                </div>
+            </div>
 
-    // Enviar WhatsApp
-    function sendWhatsApp() {
-      if(cart.length === 0) {
-        alert('Adicione pelo menos um produto ao carrinho!');
-        return;
-      }
-      let text = "Olá! Gostaria de fazer o seguinte pedido:%0A%0A";
-      cart.forEach(i => {
-        text += `- ${i.title} (R$ ${i.price.toFixed(2).replace('.',',')})%0A`;
-      });
-      if(selectedFreightCost > 0) {
-        text += `%0AFrete: R$ ${selectedFreightCost.toFixed(2).replace('.',',')}`;
-      }
-      
-      const subtotal = cart.reduce((acc, cur) => acc + cur.price, 0);
-      const total = subtotal + selectedFreightCost;
-      text += `%0A*Total do Pedido: R$ ${total.toFixed(2).replace('.',',')}*`;
+        </div>
 
-      // Insira seu telefone com DDD (ex: 5511999999999)
-      const phone = "5511999999999"; 
-      window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
-    }
-  </script>
+        <div id="personalizados" class="custom-box">
+            <h2 class="section-title" style="margin-bottom:10px;">🍬 Balas Personalizadas com a Sua Marca</h2>
+            <p style="text-align:center; color:#666; margin-bottom:20px;">Ideal para comércios, clínicas, eventos e brindes corporativos.</p>
+
+            <form id="customForm" onsubmit="enviarPedidoPersonalizado(event)">
+                <div class="form-group">
+                    <label for="flavor">Escolha o Sabor da Bala:</label>
+                    <select id="flavor" required>
+                        <option value="Frutas Sortidas">Frutas Sortidas (Mastigável)</option>
+                        <option value="Hortelã / Menta">Hortelã / Menta (Dura)</option>
+                        <option value="Café Premium">Café Premium</option>
+                        <option value="Toffee Caramelo">Toffee Caramelo</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantidade de Balas:</label>
+                    <input type="number" id="quantity" min="3000" value="3000" step="500" required onchange="validarQuantidade()">
+                    <div class="alert-info">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span><strong>Pedido Mínimo:</strong> 3.000 unidades para embalagens personalizadas.</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="logo">Envie sua Logomarca (PNG, JPG ou PDF):</label>
+                    <input type="file" id="logo" accept="image/*,.pdf" required>
+                </div>
+
+                <button type="submit" class="btn-main" style="width:100%; background-color: var(--primary); color:white; font-size:1.1rem; padding:15px;">
+                    <i class="fa-brands fa-whatsapp"></i> Solicitar Orçamento no WhatsApp
+                </button>
+            </form>
+        </div>
+
+        <div class="insta-banner">
+            <i class="fa-brands fa-instagram" style="font-size: 3rem; margin-bottom: 10px;"></i>
+            <h3>Siga a Tenda Balas no Instagram!</h3>
+            <p>Acompanhe nossos lançamentos e fotos de clientes em <a href="https://instagram.com" target="_blank">@tendabalas.oficial</a></p>
+        </div>
+
+    </div>
+
+    <a href="https://wa.me/5500000000000?text=Olá!%20Vim%20pelo%20site%20tendabalas.com.br%20e%20gostaria%20de%20tirar%20uma%20dúvida." class="whatsapp-float" target="_blank" title="Fale pelo WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Pop-up da Galeria de Fotos -->
+    <div class="modal-overlay" id="galleryModal">
+        <div class="modal-container">
+            <button class="close-btn" onclick="closeGallery()">&times;</button>
+            <div>
+                <img src="" id="modalImgMain" class="modal-main-img" alt="Foto Ampliada">
+                <div class="modal-thumbs" id="modalThumbsList"></div>
+            </div>
+            <div style="display:flex; flex-direction:column; justify-content:center;">
+                <h3 id="modalProductTitle" style="color:var(--dark); margin-bottom:10px;"></h3>
+                <p id="modalProductPrice" style="color:var(--primary); font-size:1.4rem; font-weight:bold; margin-bottom:15px;"></p>
+                <button class="btn-main" style="width:100%;" id="modalBuyBtn">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gaveta Lateral do Carrinho de Compras -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header-title">
+            <h3><i class="fa-solid fa-cart-shopping"></i> Seu Carrinho</h3>
+            <button class="close-btn" style="position:static;" onclick="toggleCartDrawer()">&times;</button>
+        </div>
+
+        <div class="cart-items-list" id="cartItemsList">
+            <p style="text-align:center; color:#888; margin-top:30px;">Seu carrinho está vazio.</p>
+        </div>
+
+        <!-- Calculadora de Frete -->
+        <div class="freight-box">
+            <label style="font-size:0.85rem; font-weight:bold; display:block; margin-bottom:5px;">Calcular Frete e Prazo de Entrega:</label>
+            <div style="display:flex; gap:5px;">
+                <input type="text" id="cepInput" placeholder="00000-000" style="padding:8px; border:1px solid #ccc; border-radius:4px; width:65%;">
+                <button onclick="calculateFreight()" style="padding:8px; background:var(--dark); color:white; border:none; border-radius:4px; cursor:pointer;">Calcular</button>
+            </div>
+            <div id="freightResultsBox"></div>
+        </div>
+
+        <div style="border-top:1px solid #eee; padding-top:10px; margin-bottom:15px;">
+            <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:1.1rem;">
+                <span>Total:</span>
+                <span id="cartTotalPrice">R$ 0,00</span>
+            </div>
+        </div>
+
+        <button class="btn-main" style="width:100%; background-color:var(--whatsapp); color:white;" onclick="checkoutWhatsApp()">
+            <i class="fa-brands fa-whatsapp"></i> Finalizar Pedido no WhatsApp
+        </button>
+    </div>
+
+    <footer>
+        <p>© 2026 Tenda Balas - tendabalas.com.br - Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Dados dos 6 Produtos com Fotos Exclusivas para a Galeria
+        const allProducts = [
+            {
+                name: "Bala Mastigável Sortida (Pacote 600g)",
+                price: 18.90,
+                images: [
+                    "https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=500&q=80",
+                    "https://picsum.photos/500/350?random=101",
+                    "https://picsum.photos/500/350?random=102",
+                    "https://picsum.photos/500/350?random=103"
+                ]
+            },
+            {
+                name: "Bala Dura Refrescante Hortelã (500g)",
+                price: 15.50,
+                images: [
+                    "https://images.unsplash.com/photo-1575224300306-1b8da36134ec?auto=format&fit=crop&w=500&q=80",
+                    "https://picsum.photos/500/350?random=201",
+                    "https://picsum.photos/500/350?random=202",
+                    "https://picsum.photos/500/350?random=203"
+                ]
+            },
+            {
+                name: "Goma de Mascar / Jujuba Colorida (1kg)",
+                price: 28.00,
+                images: [
+                    "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?auto=format&fit=crop&w=500&q=80",
+                    "https://picsum.photos/500/350?random=301",
+                    "https://picsum.photos/500/350?random=302",
+                    "https://picsum.photos/500/350?random=303"
+                ]
+            },
+            {
+                name: "Bala Toffee Caramelo Premium (500g)",
+                price: 24.90,
+                images: [
+                    "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?auto=format&fit=crop&w=500&q=80",
+                    "https://picsum.photos/500/350?random=401",
+                    "https://picsum.photos/500/350?random=402",
+                    "https://picsum.photos/500/350?random=403"
+                ]
+            },
+            {
+                name: "Bala de Café Gourmet Intenso (400g)",
+                price: 21.00,
+                images: [
+                    "https://images.unsplash.com/photo-1532117892862-274641617300?auto=format&fit=crop&w=500&q=80",
+                    "https://picsum.photos/500/350?random=501",
+                    "https://picsum.photos/500/350?random=502",
+                    "https://picsum.photos/500/350?random=503"
+                ]
+            },
+            {
+                name: "Bala Dura de Canela Picante (500g)",
+                price: 16.90,
+                images: [
+                    "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80",
+                    "https://picsum.photos/500/350?random=601",
+                    "https://picsum.photos/500/350?random=602",
+                    "https://picsum.photos/500/350?random=603"
+                ]
+            }
+        ];
+
+        let shoppingCart = [];
+        let selectedFreight = 0;
+
+        // Galeria de Fotos (Popup Modal)
+        function openGallery(index) {
+            const prod = allProducts[index];
+            document.getElementById('modalProductTitle').innerText = prod.name;
+            document.getElementById('modalProductPrice').innerText = `R$ ${prod.price.toFixed(2).replace('.',',')}`;
+            
+            const mainImg = document.getElementById('modalImgMain');
+            mainImg.src = prod.images[0];
+
+            const thumbsBox = document.getElementById('modalThumbsList');
+            thumbsBox.innerHTML = '';
+            prod.images.forEach((imgUrl, i) => {
+                thumbsBox.innerHTML += `<img src="${imgUrl}" class="thumb-img ${i === 0 ? 'active' : ''}" onclick="swapModalImg('${imgUrl}', this)">`;
+            });
+
+            document.getElementById('modalBuyBtn').onclick = function() {
+                addToCart(index);
+                closeGallery();
+            };
+
+            document.getElementById('galleryModal').classList.add('active');
+        }
+
+        function swapModalImg(url, el) {
+            document.getElementById('modalImgMain').src = url;
+            document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function closeGallery() {
+            document.getElementById('galleryModal').classList.remove('active');
+        }
+
+        // Sistema de Carrinho de Compras
+        function toggleCartDrawer() {
+            document.getElementById('cartDrawer').classList.toggle('active');
+        }
+
+        function addToCart(index) {
+            shoppingCart.push(allProducts[index]);
+            updateCartUI();
+            alert('Item adicionado ao carrinho!');
+        }
+
+        function removeFromCart(i) {
+            shoppingCart.splice(i, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            document.getElementById('cartCount').innerText = shoppingCart.length;
+            const container = document.getElementById('cartItemsList');
+
+            if(shoppingCart.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#888; margin-top:30px;">Seu carrinho está vazio.</p>';
+                document.getElementById('cartTotalPrice').innerText = 'R$ 0,00';
+                return;
+            }
+
+            container.innerHTML = '';
+            let subtotal = 0;
+            shoppingCart.forEach((item, idx) => {
+                subtotal += item.price;
+                container.innerHTML += `
+                    <div class="cart-item-single">
+                        <div>
+                            <strong>${item.name}</strong>
+                            <div style="color:var(--primary); font-weight:bold;">R$ ${item.price.toFixed(2).replace('.',',')}</div>
+                        </div>
+                        <button onclick="removeFromCart(${idx})" style="background:none; border:none; color:red; cursor:pointer; font-size:1.2rem;"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                `;
+            });
+
+            const finalTotal = subtotal + selectedFreight;
+            document.getElementById('cartTotalPrice').innerText = `R$ ${finalTotal.toFixed(2).replace('.',',')}`;
+        }
+
+        // Calculadora de Frete com Prazos em Dias Úteis
+        function calculateFreight() {
+            const cep = document.getElementById('cepInput').value.replace(/\D/g, '');
+            const box = document.getElementById('freightResultsBox');
+
+            if(cep.length === 8) {
+                box.innerHTML = `
+                    <div class="freight-result-item" onclick="applyFreight(16.50)">
+                        <span><strong>PAC (Econômico):</strong> R$ 16,50</span>
+                        <span>📦 5 a 8 dias úteis</span>
+                    </div>
+                    <div class="freight-result-item" onclick="applyFreight(29.90)">
+                        <span><strong>SEDEX (Expresso):</strong> R$ 29,90</span>
+                        <span>🚀 2 a 3 dias úteis</span>
+                    </div>
+                `;
+                applyFreight(16.50); // Valor padrão inicial
+            } else {
+                alert('Por favor, informe um CEP válido com 8 dígitos.');
+            }
+        }
+
+        function applyFreight(value) {
+            selectedFreight = value;
+            updateCartUI();
+        }
+
+        function checkoutWhatsApp() {
+            if(shoppingCart.length === 0) {
+                alert('Adicione pelo menos um produto ao seu carrinho primeiro!');
+                return;
+            }
+
+            let msg = "Olá Tenda Balas! Gostaria de finalizar o meu pedido:%0A%0A";
+            shoppingCart.forEach(prod => {
+                msg += `- ${prod.name} (R$ ${prod.price.toFixed(2).replace('.',',')})%0A`;
+            });
+
+            if(selectedFreight > 0) {
+                msg += `%0AFrete Selecionado: R$ ${selectedFreight.toFixed(2).replace('.',',')}`;
+            }
+
+            const sub = shoppingCart.reduce((acc, p) => acc + p.price, 0);
+            const total = sub + selectedFreight;
+            msg += `%0A*Total Final: R$ ${total.toFixed(2).replace('.',',')}*`;
+
+            const fone = "5500000000000"; 
+            window.open(`https://wa.me/${fone}?text=${msg}`, '_blank');
+        }
+
+        // Funções Originais de Validação e Form
+        function validarQuantidade() {
+            const input = document.getElementById('quantity');
+            if (parseInt(input.value) < 3000) {
+                alert('A quantidade mínima para balas personalizadas é de 3.000 unidades.');
+                input.value = 3000;
+            }
+        }
+
+        function enviarPedidoPersonalizado(event) {
+            event.preventDefault();
+            const sabor = document.getElementById('flavor').value;
+            const qtd = document.getElementById('quantity').value;
+            const logo = document.getElementById('logo').files[0];
+
+            let nomeArquivo = logo ? logo.name : "Nenhum arquivo anexado";
+
+            const mensagem = `Olá Tenda Balas! Gostaria de um orçamento para Balas Personalizadas:%0A` +
+                             `- Sabor: ${sabor}%0A` +
+                             `- Quantidade: ${qtd} unidades%0A` +
+                             `- Arquivo da Logo: ${nomeArquivo}`;
+
+            const numeroWhatsApp = "5500000000000"; 
+            window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`, '_blank');
+        }
+    </script>
 </body>
 </html>
