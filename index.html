@@ -3,1004 +3,494 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tenda Balas | Balas Tradicionais e Personalizadas</title>
-    <!-- Google Fonts & Font Awesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Tenda Balas - Balas Personalizadas e Doces</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root {
-            --primary: #e63946;
-            --secondary: #f1faee;
-            --accent: #ffb703;
-            --dark: #1d3557;
-            --whatsapp: #25d366;
-            --mercadopago: #009ee3;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+        body { background-color: #f4f6f8; color: #333; padding-bottom: 30px; }
+        
+        /* HEADER & NAVBAR */
+        header { background: #e63946; color: white; padding: 15px 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .cart-icon-btn { position: relative; background: #ffb703; color: #1d3557; border: none; padding: 10px 18px; border-radius: 20px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: transform 0.2s; }
+        .cart-icon-btn:hover { transform: scale(1.05); }
+        .cart-badge { background: #e63946; color: white; font-size: 0.75rem; border-radius: 50%; padding: 2px 7px; position: absolute; top: -5px; right: -5px; font-weight: bold; }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-        }
+        /* CONTAINER GLOBAL */
+        .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; }
 
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            padding-bottom: 80px;
-        }
+        /* BANNER HERO principal */
+        .hero-banner { background: #1d3557; color: white; border-radius: 16px; padding: 40px 20px; text-align: center; margin-bottom: 25px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+        .hero-banner h1 { font-size: 2.2rem; margin-bottom: 10px; font-weight: 700; }
+        .hero-banner p { font-size: 1.05rem; opacity: 0.95; max-width: 700px; margin: 0 auto 20px auto; }
+        .hero-banner .btn-hero { background: #ffb703; color: #1d3557; padding: 12px 28px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block; transition: 0.2s; }
+        .hero-banner .btn-hero:hover { background: #ffa200; }
 
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 15px 20px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        /* BANNER SECUNDÁRIO - BALAS PERSONALIZADAS COM LOGOMARCA (3.000 UNIDADES) */
+        .logo-banner { background: #1d3557; color: white; border-radius: 12px; padding: 30px 20px; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); }
+        .logo-banner h2 { font-size: 1.4rem; color: #ffb703; margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .logo-banner p { font-size: 0.98rem; margin-bottom: 18px; line-height: 1.6; }
+        .logo-banner .btn-logo-whatsapp { background: #25d366; color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; transition: transform 0.2s; }
+        .logo-banner .btn-logo-whatsapp:hover { transform: scale(1.03); }
 
-        header h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
+        /* CAIXA INFORMATIVA - COMO FUNCIONA A ARTE DO SEU PEDIDO? */
+        .art-info-box { background: #e0f2fe; border-left: 5px solid #0284c7; border-radius: 8px; padding: 20px; margin-bottom: 30px; color: #0369a1; text-align: left; }
+        .art-info-box h3 { font-size: 1.1rem; color: #0284c7; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; font-weight: 700; }
+        .art-info-box p { font-size: 0.93rem; line-height: 1.6; margin-bottom: 6px; color: #0f172a; }
+        .art-info-box p strong { color: #0369a1; }
 
-        .cart-btn-header {
-            background: var(--accent);
-            color: var(--dark);
-            border: none;
-            padding: 10px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        /* TITULOS DE SEÇÕES */
+        .section-title { font-size: 1.6rem; color: #1d3557; text-align: center; margin-bottom: 8px; font-weight: 700; }
 
-        .cart-count {
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            padding: 2px 8px;
-            font-size: 0.8rem;
-        }
+        /* GRID DE PRODUTOS */
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 20px; margin-bottom: 35px; }
+        .product-card { background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 15px; transition: transform 0.2s; border: 1px solid #edf2f7; }
+        .product-card:hover { transform: translateY(-4px); }
+        .product-img { width: 100%; height: 180px; object-fit: cover; background: #e2e8f0; }
+        .product-info { padding: 15px 15px 5px 15px; text-align: left; }
+        .product-title { font-size: 1.05rem; font-weight: 700; color: #1d3557; margin-bottom: 6px; }
+        .product-price { font-size: 1.25rem; font-weight: 800; color: #e63946; margin-bottom: 12px; }
 
-        .hero {
-            background: linear-gradient(rgba(29, 53, 87, 0.7), rgba(29, 53, 87, 0.7)), 
-                        url('https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=1200&q=80') center/cover;
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
+        /* CONTROLES DE QUANTIDADE NA VITRINE (- 1 +) */
+        .qty-picker-container { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 15px 10px 15px; }
+        .qty-btn { background: #e2e8f0; border: none; color: #1e293b; width: 32px; height: 32px; border-radius: 6px; font-weight: bold; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+        .qty-btn:hover { background: #cbd5e1; }
+        .qty-input { width: 48px; height: 32px; text-align: center; font-weight: bold; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; }
 
-        .btn-main {
-            background-color: var(--accent);
-            color: var(--dark);
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            font-weight: 700;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: 0.3s;
-        }
+        .btn-add-cart { background: #ffb703; color: #1d3557; border: none; padding: 10px; margin: 0 15px 6px 15px; border-radius: 20px; font-weight: 700; cursor: pointer; transition: 0.2s; width: calc(100% - 30px); }
+        .btn-add-cart:hover { background: #ffa200; }
+        .btn-view-photos { background: #e2e8f0; color: #475569; border: none; padding: 8px; margin: 0 15px; border-radius: 20px; font-weight: 600; font-size: 0.85rem; cursor: pointer; width: calc(100% - 30px); }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 30px 15px;
-        }
+        /* SEÇÃO DE CAMPANHAS TEMÁTICAS */
+        .themes-section { background: white; border-radius: 16px; padding: 35px 20px; margin: 30px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 5px solid #e63946; }
+        .btn-designer-portfolio { background-color: #ffb703; color: #1d3557; margin-top: 15px; display: inline-block; font-weight: bold; text-decoration: none; padding: 12px 25px; border-radius: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.2s; cursor: pointer; border: none; }
+        .btn-designer-portfolio:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(0,0,0,0.15); }
 
-        .section-title {
-            text-align: center;
-            font-size: 1.6rem;
-            color: var(--dark);
-            margin-bottom: 25px;
-        }
+        .themes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 25px; }
+        .theme-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s; }
+        .theme-card:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.08); }
+        .theme-card h3 { color: #e63946; font-size: 1.15rem; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .theme-card ul { list-style: none; padding: 0; line-height: 2; color: #475569; font-size: 0.92rem; }
+        .btn-theme-link { margin-top: 20px; background: #e63946; color: white; text-align: center; padding: 11px; border-radius: 8px; text-decoration: none; font-weight: bold; display: block; transition: 0.2s; cursor: pointer; border: none; width: 100%; }
+        .btn-theme-link:hover { background: #d62828; }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
+        /* REVIEWS / AVALIAÇÕES */
+        .reviews-section { background: white; border-radius: 16px; padding: 35px 20px; margin: 30px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 25px; }
+        .review-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; }
+        .review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+        .review-avatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; }
+        .review-user-info h4 { font-size: 0.95rem; color: #1d3557; margin: 0; }
+        .review-user-info span { font-size: 0.8rem; color: #64748b; }
+        .stars { color: #ffb703; margin-bottom: 8px; font-size: 0.85rem; }
+        .review-text { font-size: 0.9rem; color: #334155; font-style: italic; line-height: 1.5; }
 
-        .card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+        /* MODAIS DO CARRINHO E GALERIAS */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: white; border-radius: 16px; width: 90%; max-width: 550px; max-height: 85vh; overflow-y: auto; padding: 25px; position: relative; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 15px; }
+        .close-modal { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b; }
+        
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f1f5f9; }
+        .cart-item-controls { display: flex; align-items: center; gap: 6px; }
 
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            cursor: pointer;
-        }
-
-        .card-body {
-            padding: 20px;
-        }
-
-        .card-title {
-            font-size: 1.1rem;
-            color: var(--dark);
-            margin-bottom: 8px;
-        }
-
-        .card-price {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        /* Bloco Informativo de Personalização */
-        .custom-info-banner {
-            background: linear-gradient(135deg, var(--dark), #2c5282);
-            color: white;
-            padding: 30px 20px;
-            border-radius: 12px;
-            text-align: center;
-            margin: 40px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        }
-
-        .custom-info-banner h3 {
-            font-size: 1.5rem;
-            color: var(--accent);
-            margin-bottom: 10px;
-        }
-
-        .custom-info-banner p {
-            font-size: 1.05rem;
-            max-width: 800px;
-            margin: 0 auto 20px auto;
-            line-height: 1.6;
-        }
-
-        /* ABA DE CAMPANHAS TEMÁTICAS */
-        .themes-section {
-            background: white;
-            border-radius: 12px;
-            padding: 35px 20px;
-            margin: 40px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-top: 5px solid var(--primary);
-        }
-
-        .themes-header-box {
-            text-align: center;
-            max-width: 850px;
-            margin: 0 auto 30px auto;
-        }
-
-        .themes-header-box h3 {
-            color: var(--dark);
-            font-size: 1.6rem;
-            margin-bottom: 10px;
-        }
-
-        .themes-header-box p {
-            font-size: 0.98rem;
-            color: #555;
-            line-height: 1.6;
-        }
-
-        .themes-header-box .badge-designer {
-            background-color: var(--accent);
-            color: var(--dark);
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 8px;
-        }
-
-        .themes-categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .theme-card-box {
-            background: #f8f9fa;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 20px;
-        }
-
-        .theme-card-box h4 {
-            color: var(--primary);
-            font-size: 1.1rem;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .theme-card-box ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .theme-card-box ul li {
-            font-size: 0.9rem;
-            color: #4a5568;
-            padding: 4px 0;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .theme-card-box ul li::before {
-            content: "•";
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        .designer-notice-box {
-            background-color: #ebf8ff;
-            border-left: 4px solid var(--mercadopago);
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 25px;
-            font-size: 0.88rem;
-            color: #2b6cb0;
-        }
-
-        /* Seção de Avaliações */
-        .reviews-section {
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 35px 20px;
-            margin: 40px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 25px;
-        }
-
-        .review-card {
-            background: #f8f9fa;
-            border: 1px solid #edf2f7;
-            border-radius: 10px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .review-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-
-        .review-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--primary);
-        }
-
-        .review-user-info h4 {
-            font-size: 0.95rem;
-            color: var(--dark);
-        }
-
-        .review-user-info span {
-            font-size: 0.8rem;
-            color: #e1306c;
-            font-weight: 600;
-        }
-
-        .stars {
-            color: #ffc107;
-            font-size: 0.85rem;
-            margin-bottom: 10px;
-        }
-
-        .review-text {
-            font-size: 0.9rem;
-            color: #555;
-            line-height: 1.5;
-            font-style: italic;
-        }
-
-        /* Modal da Galeria */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .modal-overlay.active { display: flex; }
-
-        .modal-container {
-            background: white;
-            border-radius: 12px;
-            max-width: 700px;
-            width: 100%;
-            padding: 25px;
-            position: relative;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px; right: 15px;
-            font-size: 1.8rem;
-            border: none;
-            background: none;
-            cursor: pointer;
-        }
-
-        .modal-main-img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 12px;
-        }
-
-        .modal-thumbs {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-        }
-
-        .thumb-img {
-            width: 65px;
-            height: 65px;
-            object-fit: cover;
-            border-radius: 6px;
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-
-        .thumb-img.active {
-            border-color: var(--primary);
-        }
-
-        /* Drawer Lateral do Carrinho */
-        .cart-drawer {
-            display: none;
-            position: fixed;
-            top: 0; right: 0;
-            width: 100%; max-width: 440px; height: 100%;
-            background: white;
-            z-index: 2001;
-            box-shadow: -4px 0 15px rgba(0,0,0,0.2);
-            padding: 20px;
-            flex-direction: column;
-        }
-
-        .cart-drawer.active { display: flex; }
-
-        .cart-item-box {
-            padding: 12px;
-            background: #fdfdfd;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-
-        .qty-box {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 8px;
-        }
-
-        .qty-btn {
-            background: #e9ecef;
-            border: 1px solid #ced4da;
-            width: 30px;
-            height: 30px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .qty-btn:hover {
-            background: #dee2e6;
-        }
-
-        .freight-info-box {
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
-            color: #856404;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            margin: 10px 0;
-        }
-
-        .freight-input-group {
-            background: #f8f9fa;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #e9ecef;
-            margin-bottom: 10px;
-        }
-
-        .freight-input-group label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 6px;
-        }
-
-        .btn-mp {
-            background-color: var(--mercadopago);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 25px;
-            font-weight: 700;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            display: block;
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-
-        .btn-mp.disabled {
-            background-color: #ccc !important;
-            cursor: not-allowed;
-            opacity: 0.6;
-            pointer-events: none;
-        }
-
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--whatsapp);
-            color: white;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 32px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 40px;
-        }
+        /* BOTÃO FLUTUANTE WHATSAPP */
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 32px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); text-decoration: none; z-index: 1500; transition: transform 0.2s; }
+        .whatsapp-float:hover { transform: scale(1.1); }
     </style>
 </head>
 <body>
 
+    <!-- HEADER -->
     <header>
-        <div>
-            <h1>TENDA BALAS</h1>
-            <p style="font-size: 0.85rem; opacity: 0.9;">tendabalas.com.br</p>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-candy-cane"></i> Tenda Balas
+            </a>
+            <button class="cart-icon-btn" onclick="openModal('cartModal')">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Carrinho</span>
+                <span class="cart-badge" id="cartCount">0</span>
+            </button>
         </div>
-        <button class="cart-btn-header" onclick="toggleCartDrawer()">
-            <i class="fa-solid fa-cart-shopping"></i> Carrinho <span class="cart-count" id="cartCount">0</span>
-        </button>
     </header>
-
-    <section class="hero">
-        <h2>As melhores balas direto para você</h2>
-        <p>Balas tradicionais, mastigáveis e personalizadas para a sua empresa ou evento.</p>
-    </section>
 
     <div class="container">
 
-        <h2 class="section-title">Nossos Produtos</h2>
-        <div class="grid" id="productsGrid">
-            <!-- 6 Quadrinhos dinâmicos -->
-        </div>
-
-        <!-- ABA DE CAMPANHAS TEMÁTICAS & CRIAÇÃO EXCLUSIVA -->
-        <div class="themes-section">
-            <div class="themes-header-box">
-                <h3><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--primary);"></i> Campanhas Temáticas & Ações Especiais</h3>
-                <p>
-                    <strong>Planeje seu evento ou campanha corporativa com antecedência!</strong> <br>
-                    Transforme suas balas em uma poderosa ferramenta de marketing ou em uma lembrancinha inesquecível.
-                </p>
-                <span class="badge-designer"><i class="fa-solid fa-palette"></i> Criações Exclusivas By Designer</span>
-            </div>
-
-            <div class="themes-categories-grid">
-                <!-- Saúde e Conscientização -->
-                <div class="theme-card-box">
-                    <h4><i class="fa-solid fa-ribbon"></i> Saúde & Conscientização</h4>
-                    <ul>
-                        <li>Outubro Rosa (Câncer de Mama)</li>
-                        <li>Novembro Azul (Câncer de Próstata)</li>
-                        <li>Prevenção e Combate ao Diabetes</li>
-                        <li>Setembro Amarelo (Valorização da Vida)</li>
-                        <li>Maio Amarelo (Atenção no Trânsito)</li>
-                        <li>Doação de Sangue & Saúde Mental</li>
-                    </ul>
-                </div>
-
-                <!-- Datas Comemorativas Populares -->
-                <div class="theme-card-box">
-                    <h4><i class="fa-solid fa-calendar-heart"></i> Datas Comemorativas</h4>
-                    <ul>
-                        <li>Dia das Mães & Dia dos Pais</li>
-                        <li>Dia das Crianças & Páscoa</li>
-                        <li>Dia dos Avós & Dia dos Filhos</li>
-                        <li>Dia do Cliente & Dia do Trabalhador</li>
-                        <li>Dia dos Namorados</li>
-                        <li>Fim de Ano (Natal e Ano Novo)</li>
-                    </ul>
-                </div>
-
-                <!-- Eventos Sociais e Corporativos -->
-                <div class="theme-card-box">
-                    <h4><i class="fa-solid fa-champagne-glasses"></i> Festas & Celebrações</h4>
-                    <ul>
-                        <li>Casamentos & Noivados</li>
-                        <li>Chá de Bebê / Maternidade</li>
-                        <li>Batizados & Primeiras Comunhões</li>
-                        <li>Aniversários & Festas Infantis</li>
-                        <li>Brindes Corporativos de Feiras</li>
-                        <li>Inaugurações & Feiras de Negócios</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Aviso sobre Criação Exclusiva x Temas Pré-definidos -->
-            <div class="designer-notice-box">
-                <i class="fa-solid fa-circle-info"></i> <strong>Como funciona a arte do seu pedido?</strong>
-                <p style="margin-top:5px;">
-                    • <strong>Temas Pré-definidos:</strong> Você pode escolher um dos modelos do nosso catálogo padrão sem nenhum custo adicional de arte.<br>
-                    • <strong>Criação Exclusiva Personalizada (By Designer):</strong> Desenvolvemos uma arte totalmente nova, alinhada à sua marca e identidade visual. <em>(A criação exclusiva possui um custo à parte, sob consulta prévia com a equipe)</em>.
-                </p>
-            </div>
-
-            <div style="text-align: center; margin-top: 25px;">
-                <a href="https://wa.me/5511989116191?text=Olá!%20Gostaria%20de%20consultar%20as%20opções%20de%20Campanhas%20Temáticas%20e%20Criação%20de%20Arte%20Exclusiva." target="_blank" class="btn-main" style="background-color:var(--whatsapp); color:white;">
-                    <i class="fa-brands fa-whatsapp"></i> Falar com Designer / Cotar Campanha
-                </a>
-            </div>
-        </div>
-
-        <!-- BLOCO DE BALAS PERSONALIZADAS ACIMA DE 3000 UNIDADES -->
-        <div class="custom-info-banner">
-            <h3><i class="fa-solid fa-stamp"></i> Balas Personalizadas com sua Logomarca</h3>
-            <p>
-                Produzimos embalagens personalizadas com a marca da sua empresa! <br>
-                <strong>Pedidos de personalização a partir de 3.000 unidades.</strong> Faça a sua cotação especial diretamente com a nossa equipe comercial.
-            </p>
-            <a href="https://wa.me/551198911619?text=Olá!%20Gostaria%20de%20fazer%20um%20orçamento%20para%20balas%20personalizadas%20com%20minha%20logo%20(acima%20de%203.000%20unidades)." target="_blank" class="btn-main" style="background-color:var(--whatsapp); color:white;">
-                <i class="fa-brands fa-whatsapp"></i> Cotar Balas Personalizadas com Logo
+        <!-- BANNER HERO PRINCIPAL -->
+        <div class="hero-banner">
+            <h1>Doces & Balas Personalizadas para Seu Evento</h1>
+            <p>Deixe a sua marca ou festa inesquecível com sabor, qualidade e embalagens personalizadas sob medida!</p>
+            <a href="https://wa.me/5511989116191?text=Olá!%20Gostaria%20de%20fazer%20um%20orçamento%20para%20balas%20personalizadas." target="_blank" class="btn-hero">
+                <i class="fa-brands fa-whatsapp"></i> Fazer Orçamento no WhatsApp
             </a>
         </div>
 
-      <!-- SEÇÃO DE AVALIAÇÕES E DEPOIMENTOS COMPLETA -->
-<div class="reviews-section">
-    <h2 class="section-title" style="margin-bottom: 5px;">
-        <i class="fa-brands fa-instagram" style="color: #e1306c;"></i> O que nossos clientes dizem
-    </h2>
-    <p style="text-align: center; color: #666; font-size: 0.9rem;">
-        Avaliações reais das nossas redes sociais e do nosso site
-    </p>
-
-    <!-- GRID COM AS AVALIAÇÕES -->
-    <div class="reviews-grid" id="reviewsGrid">
-        
-        <!-- CARD 1 -->
-        <div class="review-card">
-            <div>
-                <div class="review-header">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" class="review-avatar" alt="Cliente">
-                    <div class="review-user-info">
-                        <h4>Mariana Alcantara</h4>
-                        <span><i class="fa-brands fa-instagram"></i> @mari_alcantara</span>
-                    </div>
-                </div>
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
-                <p class="review-text">"As balas personalizadas com a logo da minha loja ficaram perfeitas! Chegaram antes do prazo e o atendimento pelo WhatsApp foi nota 10!"</p>
-            </div>
+        <!-- BANNER SECUNDÁRIO: BALAS PERSONALIZADAS COM SUA LOGOMARCA (3.000 UNIDADES) -->
+        <div class="logo-banner">
+            <h2><i class="fa-solid fa-stamp"></i> Balas Personalizadas com sua Logomarca</h2>
+            <p>Produzimos embalagens personalizadas com a marca da sua empresa!<br>
+            <strong>Pedidos de personalização a partir de 3.000 unidades.</strong> Faça a sua cotação especial diretamente com a nossa equipe comercial.</p>
+            <a href="https://wa.me/5511989116191?text=Olá!%20Gostaria%20de%20fazer%20uma%20cotação%20para%20balas%20personalizadas%20com%20minha%20logomarca%20(acima%20de%203000%20unidades)." target="_blank" class="btn-logo-whatsapp">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.1rem;"></i> Cotar Balas Personalizadas com Logo
+            </a>
         </div>
 
-        <!-- CARD 2 -->
-        <div class="review-card">
-            <div>
-                <div class="review-header">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="review-avatar" alt="Cliente">
-                    <div class="review-user-info">
-                        <h4>Lucas R. Silva</h4>
-                        <span><i class="fa-brands fa-instagram"></i> @lucas_rsilva</span>
-                    </div>
-                </div>
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
-                <p class="review-text">"Comprei o pacote de balas mastigáveis pra festa do meu filho. O sabor é incrível e o frete super rápido para o interior de SP."</p>
-            </div>
+        <!-- CAIXA INFORMATIVA: COMO FUNCIONA A ARTE DO SEU PEDIDO? -->
+        <div class="art-info-box">
+            <h3><i class="fa-solid fa-circle-info"></i> Como funciona a arte do seu pedido?</h3>
+            <p>• <strong>Temas Pré-definidos:</strong> Você pode escolher um dos modelos do nosso catálogo padrão sem nenhum custo adicional de arte.</p>
+            <p>• <strong>Criação Exclusiva Personalizada (By Designer):</strong> Desenvolvemos uma arte totalmente nova, alinhada à sua marca e identidade visual. <em>(A criação exclusiva possui um custo à parte, sob consulta prévia com a equipe).</em></p>
         </div>
 
-        <!-- CARD 3 -->
-        <div class="review-card">
-            <div>
-                <div class="review-header">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="review-avatar" alt="Cliente">
-                    <div class="review-user-info">
-                        <h4>Carla B. Eventos</h4>
-                        <span><i class="fa-brands fa-instagram"></i> @carla_eventos</span>
-                    </div>
-                </div>
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
-                <p class="review-text">"Fiz um pedido de 5.000 balas personalizadas para uma feira corporativa. Fez o maior sucesso no estande. Tenda Balas é top!"</p>
-            </div>
-        </div>
+        <!-- VITRINE DE PRODUTOS COM SELETOR DE QUANTIDADE -->
+        <h2 class="section-title"><i class="fa-solid fa-store" style="color: #e63946;"></i> Nossos Produtos</h2>
+        <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">Escolha a quantidade desejada e adicione ao seu carrinho</p>
 
-    </div>
-
-    <!-- FORMULÁRIO PARA O CLIENTE AVALIAR DIRETO NO SITE -->
-    <div style="background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 12px; padding: 25px; margin-top: 35px; max-width: 600px; margin-left: auto; margin-right: auto;">
-        <h3 style="margin-bottom: 5px; text-align: center; color: #1e293b; font-size: 1.2rem;">
-            <i class="fa-solid fa-pen-to-square" style="color: #e1306c;"></i> Já comprou conosco? Deixe seu depoimento!
-        </h3>
-        <p style="text-align: center; color: #64748b; font-size: 0.85rem; margin-bottom: 20px;">
-            Sua avaliação aparecerá no site em tempo real.
-        </p>
-
-        <form onsubmit="addNewReview(event)">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 12px;">
-                <input type="text" id="reviewerName" placeholder="Seu Nome " required style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
-                <input type="text" id="reviewerInsta" placeholder="Seu @ do Instagram " style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
-            </div>
-
-            <select id="reviewerStars" required style="width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; background-color: white;">
-                <option value="5">★★★★★ (5 Estrelas - Excelente)</option>
-                <option value="4">★★★★☆ (4 Estrelas - Muito Bom)</option>
-                <option value="3">★★★☆☆ (3 Estrelas - Bom)</option>
-                <option value="3">★★☆☆☆ (2 Estrelas - Regular)</option>
-                <option value="3">★☆☆☆☆ (1 Estrelas - Ruim)</option>
-                <option value="3">☆☆☆☆☆ (0 Estrelas - Péssimo)</option>
-            </select>
-
-            <textarea id="reviewerComment" rows="3" placeholder="Conte como foi sua experiência com a Tenda Balas..." required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; resize: vertical;"></textarea>
-
-            <button type="submit" style="background-color: #e1306c; color: white; width: 100%; padding: 14px; border-radius: 8px; border: none; font-weight: bold; font-size: 1rem; cursor: pointer; transition: background 0.2s;">
-                Publicar Avaliação
-            </button>
-        </form>
-    </div>
-</div>
-
-<!-- JAVASCRIPT PARA GERAR O NOVO CARD AUTOMATICAMENTE -->
-<script>
-function addNewReview(e) {
-    e.preventDefault();
-
-    const name = document.getElementById('reviewerName').value.trim();
-    let insta = document.getElementById('reviewerInsta').value.trim();
-    const starsNum = parseInt(document.getElementById('reviewerStars').value);
-    const comment = document.getElementById('reviewerComment').value.trim();
-
-    // Formatação do Instagram
-    let instaHtml = '';
-    if (insta !== '') {
-        if (!insta.startsWith('@')) insta = '@' + insta;
-        const cleanUser = insta.replace('@', '');
-        instaHtml = `<span><a href="https://instagram.com/${cleanUser}" target="_blank" style="color: inherit; text-decoration: none;"><i class="fa-brands fa-instagram"></i> ${insta}</a></span>`;
-    } else {
-        instaHtml = `<span><i class="fa-solid fa-globe"></i> Cliente do Site</span>`;
-    }
-
-    // Criação das estrelas em ícones do FontAwesome
-    let starsHtml = '';
-    for (let i = 0; i < 5; i++) {
-        if (i < starsNum) {
-            starsHtml += '<i class="fa-solid fa-star"></i>';
-        } else {
-            starsHtml += '<i class="fa-regular fa-star"></i>';
-        }
-    }
-
-    // Gerador de avatar com a inicial do nome
-    const initial = name.charAt(0).toUpperCase();
-    const avatarSvg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100%" height="100%" fill="%23e1306c"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="45" font-weight="bold" fill="white" font-family="sans-serif">${initial}</text></svg>`;
-
-    // Estrutura exatamente igual aos cards originais do site
-    const newCardHtml = `
-        <div class="review-card" style="animation: fadeIn 0.5s ease-in-out;">
-            <div>
-                <div class="review-header">
-                    <img src="${avatarSvg}" class="review-avatar" alt="${name}">
-                    <div class="review-user-info">
-                        <h4>${name}</h4>
-                        ${instaHtml}
-                    </div>
-                </div>
-                <div class="stars">
-                    ${starsHtml}
-                </div>
-                <p class="review-text">"${comment}"</p>
-            </div>
-        </div>
-    `;
-
-    // Insere o novo depoimento no topo da lista
-    const grid = document.getElementById('reviewsGrid');
-    grid.insertAdjacentHTML('afterbegin', newCardHtml);
-
-    alert('Sua avaliação foi publicada com sucesso!');
-    e.target.reset();
-}
-</script>
-    <!-- Modal da Galeria (5 Imagens) -->
-    <div class="modal-overlay" id="galleryModal">
-        <div class="modal-container">
-            <button class="close-btn" onclick="closeGallery()">&times;</button>
-            <h3 id="modalProductTitle" style="color:var(--dark); margin-bottom:10px;"></h3>
-            <img src="" id="modalImgMain" class="modal-main-img" alt="Foto Ampliada">
-            <div class="modal-thumbs" id="modalThumbsList"></div>
+        <div class="products-grid">
             
-            <div style="margin-top:15px; display:flex; justify-content:space-between; align-items:center;">
-                <span id="modalProductPrice" style="color:var(--primary); font-size:1.4rem; font-weight:bold;"></span>
-                <button class="btn-main" id="modalBuyBtn">Adicionar ao Carrinho</button>
+            <!-- PRODUTO 1 -->
+            <div class="product-card">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=500&q=80" class="product-img" alt="Bala Mastigável">
+                    <div class="product-info">
+                        <div class="product-title">Bala Mastigável Sortida (Pacote 600g)</div>
+                        <div class="product-price">R$ 18,90</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="qty-picker-container">
+                        <button class="qty-btn" onclick="changeQty('qty_p1', -1)">-</button>
+                        <input type="number" id="qty_p1" class="qty-input" value="1" min="1" readonly>
+                        <button class="qty-btn" onclick="changeQty('qty_p1', 1)">+</button>
+                    </div>
+                    <button class="btn-add-cart" onclick="addToCart('Bala Mastigável Sortida (Pacote 600g)', 18.90, 'qty_p1')">
+                        Adicionar ao Carrinho
+                    </button>
+                    <button class="btn-view-photos" onclick="openGallery('Bala Mastigável Sortida')">Ver + Fotos</button>
+                </div>
+            </div>
+
+            <!-- PRODUTO 2 -->
+            <div class="product-card">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1575224300306-1b8da36134ec?auto=format&fit=crop&w=500&q=80" class="product-img" alt="Bala Dura">
+                    <div class="product-info">
+                        <div class="product-title">Bala Dura Refrescante Hortelã (500g)</div>
+                        <div class="product-price">R$ 15,50</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="qty-picker-container">
+                        <button class="qty-btn" onclick="changeQty('qty_p2', -1)">-</button>
+                        <input type="number" id="qty_p2" class="qty-input" value="1" min="1" readonly>
+                        <button class="qty-btn" onclick="changeQty('qty_p2', 1)">+</button>
+                    </div>
+                    <button class="btn-add-cart" onclick="addToCart('Bala Dura Refrescante Hortelã (500g)', 15.50, 'qty_p2')">
+                        Adicionar ao Carrinho
+                    </button>
+                    <button class="btn-view-photos" onclick="openGallery('Bala Dura Hortelã')">Ver + Fotos</button>
+                </div>
+            </div>
+
+            <!-- PRODUTO 3 -->
+            <div class="product-card">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1581798459219-318e76aecc7b?auto=format&fit=crop&w=500&q=80" class="product-img" alt="Jujuba">
+                    <div class="product-info">
+                        <div class="product-title">Goma de Mascar / Jujuba Colorida (1kg)</div>
+                        <div class="product-price">R$ 28,00</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="qty-picker-container">
+                        <button class="qty-btn" onclick="changeQty('qty_p3', -1)">-</button>
+                        <input type="number" id="qty_p3" class="qty-input" value="1" min="1" readonly>
+                        <button class="qty-btn" onclick="changeQty('qty_p3', 1)">+</button>
+                    </div>
+                    <button class="btn-add-cart" onclick="addToCart('Goma de Mascar / Jujuba Colorida (1kg)', 28.00, 'qty_p3')">
+                        Adicionar ao Carrinho
+                    </button>
+                    <button class="btn-view-photos" onclick="openGallery('Goma de Mascar / Jujuba')">Ver + Fotos</button>
+                </div>
+            </div>
+
+            <!-- PRODUTO 4 -->
+            <div class="product-card">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1532117182044-d559286919e1?auto=format&fit=crop&w=500&q=80" class="product-img" alt="Toffee" id="img_toffee" onerror="this.src='https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=500&q=80'">
+                    <div class="product-info">
+                        <div class="product-title">Bala Toffee Caramelo Premium (500g)</div>
+                        <div class="product-price">R$ 24,90</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="qty-picker-container">
+                        <button class="qty-btn" onclick="changeQty('qty_p4', -1)">-</button>
+                        <input type="number" id="qty_p4" class="qty-input" value="1" min="1" readonly>
+                        <button class="qty-btn" onclick="changeQty('qty_p4', 1)">+</button>
+                    </div>
+                    <button class="btn-add-cart" onclick="addToCart('Bala Toffee Caramelo Premium (500g)', 24.90, 'qty_p4')">
+                        Adicionar ao Carrinho
+                    </button>
+                    <button class="btn-view-photos" onclick="openGallery('Bala Toffee Caramelo')">Ver + Fotos</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SEÇÃO DE CAMPANHAS TEMÁTICAS -->
+        <div class="themes-section">
+            <div style="text-align: center; max-width: 850px; margin: 0 auto;">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-bullhorn" style="color:#e63946;"></i> Campanhas Temáticas & Ações Especiais
+                </h2>
+                <p style="color: #555; font-size: 0.95rem;">
+                    Planeje seu evento ou campanha corporativa com antecedência! Transforme suas balas em uma poderosa ferramenta de marketing ou em uma lembrancinha inesquecível.
+                </p>
+                
+                <button onclick="openCategoryGallery('Portfólio dos Designers (Criações Exclusivas)')" class="btn-designer-portfolio">
+                    <i class="fa-solid fa-palette"></i> Ver Portfólio das Criações Exclusivas By Designer
+                </button>
+            </div>
+
+            <div class="themes-grid">
+                
+                <!-- CARD 1: SAÚDE -->
+                <div class="theme-card">
+                    <div>
+                        <h3><i class="fa-solid fa-ribbon"></i> Saúde & Conscientização</h3>
+                        <ul>
+                            <li>• Outubro Rosa (Câncer de Mama)</li>
+                            <li>• Novembro Azul (Câncer de Próstata)</li>
+                            <li>• Prevenção e Combate ao Diabetes</li>
+                            <li>• Setembro Amarelo (Valorização da Vida)</li>
+                            <li>• Maio Amarelo (Atenção no Trânsito)</li>
+                            <li>• Doação de Sangue & Saúde Mental</li>
+                        </ul>
+                    </div>
+                    <button onclick="openCategoryGallery('Galeria de Saúde & Conscientização')" class="btn-theme-link">
+                        Ver Galeria de Saúde <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- CARD 2: DATAS COMEMORATIVAS -->
+                <div class="theme-card">
+                    <div>
+                        <h3><i class="fa-solid fa-calendar-days"></i> Datas Comemorativas</h3>
+                        <ul>
+                            <li>• Dia das Mães & Dia dos Pais</li>
+                            <li>• Dia das Crianças & Páscoa</li>
+                            <li>• Dia dos Avós & Dia dos Filhos</li>
+                            <li>• Dia do Cliente & Dia do Trabalhador</li>
+                            <li>• Dia dos Namorados</li>
+                            <li>• Fim de Ano (Natal e Ano Novo)</li>
+                        </ul>
+                    </div>
+                    <button onclick="openCategoryGallery('Galeria de Datas Comemorativas')" class="btn-theme-link">
+                        Ver Galeria de Datas <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- CARD 3: FESTAS & CELEBRAÇÕES -->
+                <div class="theme-card">
+                    <div>
+                        <h3><i class="fa-solid fa-glass-cheers"></i> Festas & Celebrações</h3>
+                        <ul>
+                            <li>• Casamentos & Noivados</li>
+                            <li>• Chá de Bebê / Maternidade</li>
+                            <li>• Batizados & Primeiras Comunhões</li>
+                            <li>• Aniversários & Festas Infantis</li>
+                            <li>• Brindes Corporativos de Feiras</li>
+                            <li>• Inaugurações & Feiras de Negócios</li>
+                        </ul>
+                    </div>
+                    <button onclick="openCategoryGallery('Galeria de Festas & Celebrações')" class="btn-theme-link">
+                        Ver Galeria de Festas <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SEÇÃO DE AVALIAÇÕES E DEPOIMENTOS -->
+        <div class="reviews-section">
+            <h2 class="section-title" style="margin-bottom: 5px;">
+                <i class="fa-brands fa-instagram" style="color: #e1306c;"></i> O que nossos clientes dizem
+            </h2>
+            <p style="text-align: center; color: #666; font-size: 0.9rem;">Avaliações reais direto das nossas redes sociais</p>
+
+            <div class="reviews-grid" id="reviewsGrid">
+                <div class="review-card">
+                    <div>
+                        <div class="review-header">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" class="review-avatar" alt="Cliente">
+                            <div class="review-user-info">
+                                <h4>Mariana Alcantara</h4>
+                                <span><i class="fa-brands fa-instagram"></i> @mari_alcantara</span>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="review-text">"As balas personalizadas com a logo da minha loja ficaram perfeitas! Chegaram antes do prazo e o atendimento pelo WhatsApp foi nota 10!"</p>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div>
+                        <div class="review-header">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="review-avatar" alt="Cliente">
+                            <div class="review-user-info">
+                                <h4>Lucas R. Silva</h4>
+                                <span><i class="fa-brands fa-instagram"></i> @lucas_rsilva</span>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="review-text">"Comprei o pacote de balas mastigáveis pra festa do meu filho. O sabor é incrível e o frete super rápido para o interior de SP."</p>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div>
+                        <div class="review-header">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="review-avatar" alt="Cliente">
+                            <div class="review-user-info">
+                                <h4>Carla B. Eventos</h4>
+                                <span><i class="fa-brands fa-instagram"></i> @carla_eventos</span>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="review-text">"Fiz um pedido de 5.000 balas personalizadas para uma feira corporativa. Fez o maior sucesso no estande. Tenda Balas é top!"</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORMULÁRIO DE NOVA AVALIAÇÃO DO CLIENTE -->
+            <div style="background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 12px; padding: 25px; margin-top: 35px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <h3 style="margin-bottom: 5px; text-align: center; color: #1e293b; font-size: 1.2rem;">
+                    <i class="fa-solid fa-pen-to-square" style="color: #e1306c;"></i> Já comprou conosco? Deixe seu depoimento!
+                </h3>
+                <p style="text-align: center; color: #64748b; font-size: 0.85rem; margin-bottom: 20px;">
+                    Sua avaliação aparecerá no site em tempo real.
+                </p>
+
+                <form onsubmit="addNewReview(event)">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 12px;">
+                        <input type="text" id="reviewerName" placeholder="Seu Nome Completo" required style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                        <input type="text" id="reviewerInsta" placeholder="Seu @ do Instagram (opcional)" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                    </div>
+
+                    <select id="reviewerStars" required style="width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; background-color: white;">
+                        <option value="5">★★★★★ (5 Estrelas - Excelente)</option>
+                        <option value="4">★★★★☆ (4 Estrelas - Muito Bom)</option>
+                        <option value="3">★★★☆☆ (3 Estrelas - Bom)</option>
+                    </select>
+
+                    <textarea id="reviewerComment" rows="3" placeholder="Conte como foi sua experiência com a Tenda Balas..." required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; resize: vertical;"></textarea>
+
+                    <button type="submit" style="background-color: #e1306c; color: white; width: 100%; padding: 14px; border-radius: 8px; border: none; font-weight: bold; font-size: 1rem; cursor: pointer;">
+                        Publicar Avaliação
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL DO CARRINHO DE COMPRAS -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 style="color: #1d3557;"><i class="fa-solid fa-cart-shopping"></i> Seu Carrinho</h3>
+                <button class="close-modal" onclick="closeModal('cartModal')">&times;</button>
+            </div>
+            
+            <div id="cartItemsList">
+                <p style="text-align: center; color: #64748b; padding: 20px 0;">Seu carrinho está vazio.</p>
+            </div>
+
+            <div style="margin-top: 20px; border-top: 2px solid #f1f5f9; padding-top: 15px;">
+                <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1rem; color: #1d3557; margin-bottom: 15px;">
+                    <span>Subtotal:</span>
+                    <span id="cartTotal">R$ 0,00</span>
+                </div>
+                <button onclick="checkoutWhatsApp()" style="background: #25d366; color: white; border: none; width: 100%; padding: 14px; border-radius: 25px; font-weight: bold; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Finalizar Pedido no WhatsApp
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Drawer Lateral do Carrinho -->
-    <div class="cart-drawer" id="cartDrawer">
-        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding-bottom:12px;">
-            <h3><i class="fa-solid fa-cart-shopping"></i> Seu Carrinho</h3>
-            <button class="close-btn" style="position:static;" onclick="toggleCartDrawer()">&times;</button>
-        </div>
-
-        <!-- Lista de Produtos no Carrinho -->
-        <div style="flex-grow:1; overflow-y:auto; margin:10px 0;" id="cartItemsList">
-            <p style="text-align:center; color:#888; margin-top:30px;">Seu carrinho está vazio.</p>
-        </div>
-
-        <!-- Alerta sobre Frete -->
-        <div class="freight-info-box">
-            <i class="fa-solid fa-truck"></i> <strong>Atenção sobre o Frete:</strong><br>
-            O valor do frete deve ser consultado primeiro com o vendedor via WhatsApp.
-        </div>
-
-        <!-- Campo de Frete em Moeda Automática -->
-        <div class="freight-input-group">
-            <label for="extraFreight">Valor do Frete Informado (R$):</label>
-            <div style="display:flex; gap:8px;">
-                <input type="text" id="extraFreight" placeholder="R$ 0,00" style="flex-grow:1; padding:8px; border:1px solid #ccc; border-radius:6px; font-weight:600;" oninput="formatCurrencyInput(this)">
-                <button onclick="applyFreight()" style="background:var(--dark); color:white; border:none; padding:8px 14px; border-radius:6px; cursor:pointer; font-weight:600;">Aplicar Frete</button>
+    <!-- MODAL DE GALERIA DE FOTOS / CATEGORIAS -->
+    <div class="modal" id="galleryModal">
+        <div class="modal-content" style="max-width: 650px;">
+            <div class="modal-header">
+                <h3 id="galleryModalTitle" style="color: #1d3557;"><i class="fa-solid fa-images"></i> Galeria</h3>
+                <button class="close-modal" onclick="closeModal('galleryModal')">&times;</button>
             </div>
-            <small id="freightStatusMsg" style="color:#d9534f; font-size:0.75rem; display:block; margin-top:4px;">Insira o frete para liberar o Mercado Pago.</small>
-        </div>
+            
+            <div id="galleryModalBody" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; padding: 10px 0;">
+                <!-- Fotos dinâmicas renderizadas aqui -->
+            </div>
 
-        <!-- Totais -->
-        <div style="border-top:1px solid #eee; padding-top:10px; margin-bottom:10px;">
-            <div style="display:flex; justify-content:space-between; font-size:0.9rem; color:#666;">
-                <span>Subtotal Produtos:</span>
-                <span id="cartSubtotalPrice">R$ 0,00</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.9rem; color:#666; margin-bottom:4px;">
-                <span>Frete:</span>
-                <span id="cartFreightPrice">R$ 0,00</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:1.2rem; color:var(--dark);">
-                <span>Total Final:</span>
-                <span id="cartTotalPrice">R$ 0,00</span>
+            <div style="margin-top: 20px; text-align: center;">
+                <a href="https://wa.me/5511989116191?text=Olá!%20Gostaria%20de%20solicitar%20mais%20fotos%20e%20modelos%20deste%20tema." target="_blank" style="background: #25d366; color: white; text-decoration: none; padding: 12px 20px; border-radius: 20px; font-weight: bold; display: inline-flex; align-items: center; gap: 8px;">
+                    <i class="fa-brands fa-whatsapp"></i> Pedir Mais Fotos no WhatsApp
+                </a>
             </div>
         </div>
-
-        <!-- Botões de Checkout -->
-        <button class="btn-main" style="width:100%; background-color:var(--whatsapp); color:white; margin-bottom:5px;" onclick="checkoutWhatsApp()">
-            <i class="fa-brands fa-whatsapp"></i> Consultar Frete / Finalizar no Whats (PIX)
-        </button>
-
-        <a href="#" class="btn-mp disabled" id="mpPayBtn" onclick="payMercadoPago(event)">
-            <i class="fa-solid fa-credit-card"></i> Pagar com Mercado Pago
-        </a>
     </div>
 
-    <!-- Botão Flutuante WhatsApp -->
-    <a href="https://wa.me/5511989116191?text=Olá!%20Gostaria%20de%20consultar%20o%20frete%20dos%20produtos." class="whatsapp-float" target="_blank" title="Fale pelo WhatsApp">
+    <!-- BOTÃO FLUTUANTE WHATSAPP COM SEU NÚMERO EXATO -->
+    <a href="https://wa.me/5511989116191?text=Olá!%20Gostaria%20de%20mais%20informações." class="whatsapp-float" target="_blank">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <footer>
-        <p>© 2026 Tenda Balas - tendabalas.com.br - Todos os direitos reservados.</p>
-    </footer>
-
+    <!-- LÓGICA JAVASCRIPT INTEGRADA -->
     <script>
-        const linkMercadoPago = "https://mpago.la/seu-link-aqui";
-
-        const products = [
-            {
-                id: 0,
-                name: "Bala Mastigável Sortida (Pacote 600g)",
-                price: 18.90,
-                images: [
-                    "https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=500&q=80",
-                    "https://picsum.photos/500/350?random=11",
-                    "https://picsum.photos/500/350?random=12",
-                    "https://picsum.photos/500/350?random=13",
-                    "https://picsum.photos/500/350?random=14"
-                ]
-            },
-            {
-                id: 1,
-                name: "Bala Dura Refrescante Hortelã (500g)",
-                price: 15.50,
-                images: [
-                    "https://images.unsplash.com/photo-1575224300306-1b8da36134ec?auto=format&fit=crop&w=500&q=80",
-                    "https://picsum.photos/500/350?random=21",
-                    "https://picsum.photos/500/350?random=22",
-                    "https://picsum.photos/500/350?random=23",
-                    "https://picsum.photos/500/350?random=24"
-                ]
-            },
-            {
-                id: 2,
-                name: "Goma de Mascar / Jujuba Colorida (1kg)",
-                price: 28.00,
-                images: [
-                    "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?auto=format&fit=crop&w=500&q=80",
-                    "https://picsum.photos/500/350?random=31",
-                    "https://picsum.photos/500/350?random=32",
-                    "https://picsum.photos/500/350?random=33",
-                    "https://picsum.photos/500/350?random=34"
-                ]
-            },
-            {
-                id: 3,
-                name: "Bala Toffee Caramelo Premium (500g)",
-                price: 24.90,
-                images: [
-                    "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?auto=format&fit=crop&w=500&q=80",
-                    "https://picsum.photos/500/350?random=41",
-                    "https://picsum.photos/500/350?random=42",
-                    "https://picsum.photos/500/350?random=43",
-                    "https://picsum.photos/500/350?random=44"
-                ]
-            },
-            {
-                id: 4,
-                name: "Bala de Café Gourmet Intenso (400g)",
-                price: 21.00,
-                images: [
-                    "https://images.unsplash.com/photo-1532117892862-274641617300?auto=format&fit=crop&w=500&q=80",
-                    "https://picsum.photos/500/350?random=51",
-                    "https://picsum.photos/500/350?random=52",
-                    "https://picsum.photos/500/350?random=53",
-                    "https://picsum.photos/500/350?random=54"
-                ]
-            },
-            {
-                id: 5,
-                name: "Bala Dura de Canela Picante (500g)",
-                price: 16.90,
-                images: [
-                    "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80",
-                    "https://picsum.photos/500/350?random=61",
-                    "https://picsum.photos/500/350?random=62",
-                    "https://picsum.photos/500/350?random=63",
-                    "https://picsum.photos/500/350?random=64"
-                ]
-            }
-        ];
-
         let shoppingCart = [];
-        let appliedFreight = 0;
-        let isFreightApplied = false;
 
-        function renderProducts() {
-            const grid = document.getElementById('productsGrid');
-            grid.innerHTML = '';
-            products.forEach(p => {
-                grid.innerHTML += `
-                    <div class="card">
-                        <img src="${p.images[0]}" alt="${p.name}" onclick="openGallery(${p.id})">
-                        <div class="card-body">
-                            <h3 class="card-title">${p.name}</h3>
-                            <p class="card-price">R$ ${p.price.toFixed(2).replace('.',',')}</p>
-                            <button class="btn-main" style="width:100%; margin-bottom:8px;" onclick="addToCart(${p.id})">Adicionar ao Carrinho</button>
-                            <button class="btn-main" style="width:100%; background-color:#e0e0e0; color:#333;" onclick="openGallery(${p.id})">Ver + Fotos</button>
-                        </div>
-                    </div>
-                `;
-            });
+        // Funções para Modais
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+        // Alterar quantidade no seletor da Vitrine (- 1 +)
+        function changeQty(inputId, delta) {
+            const input = document.getElementById(inputId);
+            let current = parseInt(input.value) || 1;
+            current += delta;
+            if (current < 1) current = 1;
+            input.value = current;
         }
 
-        function openGallery(id) {
-            const prod = products[id];
-            document.getElementById('modalProductTitle').innerText = prod.name;
-            document.getElementById('modalProductPrice').innerText = `R$ ${prod.price.toFixed(2).replace('.',',')}`;
-            
-            const mainImg = document.getElementById('modalImgMain');
-            mainImg.src = prod.images[0];
+        // Adicionar ao Carrinho vindo da Vitrine
+        function addToCart(name, price, qtyInputId) {
+            const qtyInput = document.getElementById(qtyInputId);
+            const quantity = parseInt(qtyInput.value) || 1;
 
-            const thumbsList = document.getElementById('modalThumbsList');
-            thumbsList.innerHTML = '';
-            prod.images.forEach((imgUrl, idx) => {
-                thumbsList.innerHTML += `<img src="${imgUrl}" class="thumb-img ${idx === 0 ? 'active' : ''}" onclick="swapModalImg('${imgUrl}', this)">`;
-            });
-
-            document.getElementById('modalBuyBtn').onclick = function() {
-                addToCart(id);
-                closeGallery();
-            };
-
-            document.getElementById('galleryModal').classList.add('active');
-        }
-
-        function swapModalImg(url, el) {
-            document.getElementById('modalImgMain').src = url;
-            document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
-        }
-
-        function closeGallery() {
-            document.getElementById('galleryModal').classList.remove('active');
-        }
-
-        function toggleCartDrawer() {
-            document.getElementById('cartDrawer').classList.toggle('active');
-        }
-
-        function addToCart(id) {
-            const existingIndex = shoppingCart.findIndex(item => item.id === id);
-            if(existingIndex > -1) {
-                shoppingCart[existingIndex].quantity += 1;
+            const existingItem = shoppingCart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += quantity;
             } else {
-                shoppingCart.push({
-                    ...products[id],
-                    quantity: 1
-                });
+                shoppingCart.push({ name: name, price: price, quantity: quantity });
             }
+
+            qtyInput.value = 1; // Reseta seletor para 1
             updateCartUI();
-            alert('Produto adicionado ao carrinho!');
+            openModal('cartModal');
         }
 
-        function changeQty(index, delta) {
+        // Alterar quantidade DENTRO do Carrinho
+        function updateCartItemQty(index, delta) {
             shoppingCart[index].quantity += delta;
             if (shoppingCart[index].quantity <= 0) {
                 shoppingCart.splice(index, 1);
@@ -1008,130 +498,135 @@ function addNewReview(e) {
             updateCartUI();
         }
 
-        function removeFromCart(index) {
-            shoppingCart.splice(index, 1);
-            updateCartUI();
-        }
-
-        function formatCurrencyInput(input) {
-            let value = input.value.replace(/\D/g, '');
-            if (value === '') {
-                input.value = '';
-                return;
-            }
-            value = (parseFloat(value) / 100).toFixed(2);
-            value = value.replace('.', ',');
-            value = value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-            input.value = 'R$ ' + value;
-        }
-
-        function applyFreight() {
-            const rawVal = document.getElementById('extraFreight').value;
-            const numericVal = parseFloat(rawVal.replace('R$', '').replace(/\./g, '').replace(',', '.').trim());
-
-            if(isNaN(numericVal) || numericVal < 0) {
-                alert('Informe um valor de frete válido.');
-                return;
-            }
-            appliedFreight = numericVal;
-            isFreightApplied = true;
-
-            const mpBtn = document.getElementById('mpPayBtn');
-            const statusMsg = document.getElementById('freightStatusMsg');
-
-            mpBtn.classList.remove('disabled');
-            statusMsg.innerText = "✓ Frete aplicado! Link do Mercado Pago liberado.";
-            statusMsg.style.color = "#28a745";
-
-            updateCartUI();
-        }
-
+        // Atualizar a interface do Carrinho
         function updateCartUI() {
-            const totalItemsCount = shoppingCart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cartCount').innerText = totalItemsCount;
+            const cartCount = document.getElementById('cartCount');
+            const cartItemsList = document.getElementById('cartItemsList');
+            const cartTotal = document.getElementById('cartTotal');
 
-            const container = document.getElementById('cartItemsList');
+            const totalItems = shoppingCart.reduce((acc, item) => acc + item.quantity, 0);
+            cartCount.innerText = totalItems;
 
-            if(shoppingCart.length === 0) {
-                container.innerHTML = '<p style="text-align:center; color:#888; margin-top:30px;">Seu carrinho está vazio.</p>';
-                document.getElementById('cartSubtotalPrice').innerText = 'R$ 0,00';
-                document.getElementById('cartFreightPrice').innerText = 'R$ 0,00';
-                document.getElementById('cartTotalPrice').innerText = 'R$ 0,00';
-                
-                document.getElementById('mpPayBtn').classList.add('disabled');
+            if (shoppingCart.length === 0) {
+                cartItemsList.innerHTML = '<p style="text-align: center; color: #64748b; padding: 20px 0;">Seu carrinho está vazio.</p>';
+                cartTotal.innerText = 'R$ 0,00';
                 return;
             }
 
-            container.innerHTML = '';
+            let html = '';
             let subtotal = 0;
 
-            shoppingCart.forEach((item, idx) => {
+            shoppingCart.forEach((item, index) => {
                 const itemTotal = item.price * item.quantity;
                 subtotal += itemTotal;
-
-                container.innerHTML += `
-                    <div class="cart-item-box">
-                        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                            <strong style="font-size:0.95rem; color:var(--dark);">${item.name}</strong>
-                            <button onclick="removeFromCart(${idx})" style="background:none; border:none; color:red; cursor:pointer; font-size:1.1rem;"><i class="fa-solid fa-trash-can"></i></button>
+                html += `
+                    <div class="cart-item">
+                        <div>
+                            <div style="font-weight: 600; color: #1d3557; font-size: 0.9rem;">${item.name}</div>
+                            <div style="color: #e63946; font-size: 0.85rem; font-weight: bold;">R$ ${item.price.toFixed(2).replace('.', ',')} un</div>
                         </div>
-                        
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
-                            <div class="qty-box">
-                                <span style="font-size:0.8rem; color:#666;">Qtd:</span>
-                                <button class="qty-btn" onclick="changeQty(${idx}, -1)">-</button>
-                                <span style="font-weight:bold; width:20px; text-align:center;">${item.quantity}</span>
-                                <button class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
-                            </div>
-                            <div style="color:var(--primary); font-weight:bold; font-size:1.05rem;">
-                                R$ ${itemTotal.toFixed(2).replace('.',',')}
-                            </div>
+                        <div class="cart-item-controls">
+                            <button class="qty-btn" style="width: 26px; height: 26px; font-size: 0.9rem;" onclick="updateCartItemQty(${index}, -1)">-</button>
+                            <span style="font-weight: bold; width: 24px; text-align: center;">${item.quantity}</span>
+                            <button class="qty-btn" style="width: 26px; height: 26px; font-size: 0.9rem;" onclick="updateCartItemQty(${index}, 1)">+</button>
                         </div>
                     </div>
                 `;
             });
 
-            const finalTotal = subtotal + appliedFreight;
-
-            document.getElementById('cartSubtotalPrice').innerText = `R$ ${subtotal.toFixed(2).replace('.',',')}`;
-            document.getElementById('cartFreightPrice').innerText = `R$ ${appliedFreight.toFixed(2).replace('.',',')}`;
-            document.getElementById('cartTotalPrice').innerText = `R$ ${finalTotal.toFixed(2).replace('.',',')}`;
+            cartItemsList.innerHTML = html;
+            cartTotal.innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
         }
 
+        // Checkout direto para o WhatsApp (Seu número exato: 5511989116191)
         function checkoutWhatsApp() {
-            if(shoppingCart.length === 0) {
-                alert('Seu carrinho está vazio!');
-                return;
-            }
-
+            if (shoppingCart.length === 0) return alert('Seu carrinho está vazio!');
+            
             let msg = "Olá Tenda Balas! Gostaria de consultar o frete / fechar meu pedido:%0A%0A";
             shoppingCart.forEach(item => {
-                msg += `- ${item.quantity}x ${item.name} = R$ ${(item.price * item.quantity).toFixed(2).replace('.',',')}%0A`;
+                msg += `- ${item.quantity}x ${item.name} = R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}%0A`;
             });
-
-            const sub = shoppingCart.reduce((a, b) => a + (b.price * b.quantity), 0);
             
-            if(isFreightApplied && appliedFreight > 0) {
-                msg += `%0AFrete Informado: R$ ${appliedFreight.toFixed(2).replace('.',',')}`;
-                msg += `%0A*Total Final: R$ ${(sub + appliedFreight).toFixed(2).replace('.',',')}*`;
-            } else {
-                msg += `%0A*Subtotal Produtos: R$ ${sub.toFixed(2).replace('.',',')}*`;
-                msg += `%0A*Aguardando cotação de frete para meu CEP.*`;
-            }
-
+            const sub = shoppingCart.reduce((a, b) => a + (b.price * b.quantity), 0);
+            msg += `%0A*Total dos Produtos: R$ ${sub.toFixed(2).replace('.', ',')}*%0A*Aguardando cotação do frete.*`;
+            
             window.open(`https://wa.me/5511989116191?text=${msg}`, '_blank');
         }
 
-        function payMercadoPago(e) {
-            e.preventDefault();
-            if(!isFreightApplied) {
-                alert('Você precisa consultar o frete com o vendedor e clicar em "Aplicar Frete" para liberar a compra pelo Mercado Pago.');
-                return;
-            }
-            window.open(linkMercadoPago, '_blank');
+        // ABRIR GALERIA DE PRODUTOS OU CATEGORIAS (GARANTE QUE NÃO DÁ PAGINA NÃO ENCONTRADA)
+        function openGallery(productName) {
+            document.getElementById('galleryModalTitle').innerText = `Fotos: ${productName}`;
+            const body = document.getElementById('galleryModalBody');
+            body.innerHTML = `
+                <img src="https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=400&q=80" style="width:100%; border-radius:8px; height:150px; object-fit:cover;">
+                <img src="https://images.unsplash.com/photo-1575224300306-1b8da36134ec?auto=format&fit=crop&w=400&q=80" style="width:100%; border-radius:8px; height:150px; object-fit:cover;">
+                <img src="https://images.unsplash.com/photo-1581798459219-318e76aecc7b?auto=format&fit=crop&w=400&q=80" style="width:100%; border-radius:8px; height:150px; object-fit:cover;">
+            `;
+            openModal('galleryModal');
         }
 
-        renderProducts();
+        function openCategoryGallery(categoryName) {
+            document.getElementById('galleryModalTitle').innerText = categoryName;
+            const body = document.getElementById('galleryModalBody');
+            body.innerHTML = `
+                <div style="text-align:center; grid-column: 1 / -1; padding:20px;">
+                    <i class="fa-solid fa-photo-film" style="font-size:3rem; color:#e63946; margin-bottom:10px;"></i>
+                    <h4 style="color:#1d3557; margin-bottom:8px;">Modelos & Amostras de ${categoryName}</h4>
+                    <p style="color:#64748b; font-size:0.9rem; margin-bottom:15px;">Temos centenas de artes e amostras prontas para enviar diretamente para o seu evento!</p>
+                </div>
+                <img src="https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=400&q=80" style="width:100%; border-radius:8px; height:140px; object-fit:cover;">
+                <img src="https://images.unsplash.com/photo-1575224300306-1b8da36134ec?auto=format&fit=crop&w=400&q=80" style="width:100%; border-radius:8px; height:140px; object-fit:cover;">
+                <img src="https://images.unsplash.com/photo-1581798459219-318e76aecc7b?auto=format&fit=crop&w=400&q=80" style="width:100%; border-radius:8px; height:140px; object-fit:cover;">
+            `;
+            openModal('galleryModal');
+        }
+
+        // Publicar Nova Avaliação
+        function addNewReview(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('reviewerName').value.trim();
+            let insta = document.getElementById('reviewerInsta').value.trim();
+            const starsNum = parseInt(document.getElementById('reviewerStars').value);
+            const comment = document.getElementById('reviewerComment').value.trim();
+
+            let instaHtml = '';
+            if (insta !== '') {
+                if (!insta.startsWith('@')) insta = '@' + insta;
+                const cleanUser = insta.replace('@', '');
+                instaHtml = `<span><a href="https://instagram.com/${cleanUser}" target="_blank" style="color: inherit; text-decoration: none;"><i class="fa-brands fa-instagram"></i> ${insta}</a></span>`;
+            } else {
+                instaHtml = `<span><i class="fa-solid fa-globe"></i> Cliente do Site</span>`;
+            }
+
+            let starsHtml = '';
+            for (let i = 0; i < 5; i++) {
+                starsHtml += (i < starsNum) ? '<i class="fa-solid fa-star"></i>' : '<i class="fa-regular fa-star"></i>';
+            }
+
+            const initial = name.charAt(0).toUpperCase();
+            const avatarSvg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100%" height="100%" fill="%23e1306c"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="45" font-weight="bold" fill="white" font-family="sans-serif">${initial}</text></svg>`;
+
+            const newCardHtml = `
+                <div class="review-card">
+                    <div>
+                        <div class="review-header">
+                            <img src="${avatarSvg}" class="review-avatar" alt="${name}">
+                            <div class="review-user-info">
+                                <h4>${name}</h4>
+                                ${instaHtml}
+                            </div>
+                        </div>
+                        <div class="stars">${starsHtml}</div>
+                        <p class="review-text">"${comment}"</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('reviewsGrid').insertAdjacentHTML('afterbegin', newCardHtml);
+            alert('Sua avaliação foi publicada com sucesso!');
+            e.target.reset();
+        }
     </script>
 </body>
 </html>
