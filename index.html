@@ -16,7 +16,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     body { background-color: var(--light); color: var(--dark); padding-bottom: 60px; }
 
-    /* Header e Navegação */
+    /* Header */
     header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
     .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
     .logo { font-size: 24px; font-weight: bold; color: var(--primary); text-decoration: none; }
@@ -27,9 +27,16 @@
     /* Hero / Banner */
     .hero { background: linear-gradient(135deg, #ff70a6 0%, #ff477e 100%); color: white; text-align: center; padding: 50px 20px; }
     .hero h1 { font-size: 32px; margin-bottom: 10px; }
+    .hero p { font-size: 18px; opacity: 0.9; }
+
+    /* Bloco Atacado / Acima de 3000 Unidades */
+    .wholesale-section { background: #fff3f6; border: 2px dashed var(--primary); border-radius: 12px; padding: 25px; margin: 30px auto; max-width: 1160px; text-align: center; }
+    .wholesale-title { font-size: 22px; color: var(--primary); margin-bottom: 10px; font-weight: bold; }
+    .wholesale-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 15px; }
+    .wholesale-badge { background: white; padding: 12px 20px; border-radius: 8px; border: 1px solid #ffd1dc; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
 
     /* Vitrine de Produtos */
-    .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+    .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
     .section-title { text-align: center; font-size: 28px; margin-bottom: 30px; color: var(--dark); }
     
     .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
@@ -49,19 +56,23 @@
     .close-modal { position: absolute; top: 15px; right: 15px; font-size: 24px; cursor: pointer; border: none; background: none; }
     
     .main-modal-img { width: 100%; height: 280px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
-    .gallery-thumbs { display: flex; gap: 10px; overflow-x: auto; }
+    .gallery-thumbs { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; }
     .thumb-img { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 2px solid transparent; }
     .thumb-img.active { border-color: var(--primary); }
 
-    /* Modal do Carrinho / Sidebar */
-    .cart-drawer { display: none; position: fixed; top:0; right:0; width: 100%; max-width: 400px; height: 100%; background: white; z-index: 1001; box-shadow: -5px 0 15px rgba(0,0,0,0.1); padding: 20px; flex-direction: column; }
+    /* Carrinho Drawer */
+    .cart-drawer { display: none; position: fixed; top:0; right:0; width: 100%; max-width: 420px; height: 100%; background: white; z-index: 1001; box-shadow: -5px 0 15px rgba(0,0,0,0.1); padding: 20px; flex-direction: column; }
     .cart-drawer.active { display: flex; }
     .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-    .cart-items { flex-grow: 1; overflow-y: auto; margin: 20px 0; }
+    .cart-items { flex-grow: 1; overflow-y: auto; margin: 15px 0; }
     .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #f9f9f9; padding-bottom: 10px; }
+    
+    /* Frete */
     .freight-box { background: var(--light); padding: 15px; border-radius: 8px; margin-bottom: 15px; }
     .freight-box input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 60%; }
     .freight-box button { padding: 8px; background: var(--dark); color: white; border: none; border-radius: 4px; cursor: pointer; }
+    .freight-option { margin-top: 8px; font-size: 13px; display: flex; justify-content: space-between; background: white; padding: 8px; border-radius: 4px; border: 1px solid #ddd; }
+
     .btn-checkout { background: #25d366; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer; font-size: 16px; text-align: center; text-decoration: none; display: block; }
   </style>
 </head>
@@ -81,12 +92,23 @@
     <p>Adoce momentos especiais com frases e marcas exclusivas!</p>
   </section>
 
+  <!-- Informação Restaurada de Atacado / Grandes Quantidades -->
+  <div class="wholesale-section">
+    <div class="wholesale-title">🍬 CONDIÇÕES ESPEICIAIS PARA ATACADO (Acima de 3.000 unidades)</div>
+    <p>Atendemos grandes eventos, casamentos e ações corporativas com preços diferenciados e orçamento sob medida!</p>
+    <div class="wholesale-grid">
+      <div class="wholesale-badge">📦 <strong>3.000 a 5.000 un.</strong>: Desconto de 15%</div>
+      <div class="wholesale-badge">📦 <strong>5.001 a 10.000 un.</strong>: Desconto de 25%</div>
+      <div class="wholesale-badge">✈️ <strong>Acima de 10.000 un.</strong>: Frete Grátis + Arte Exclusiva</div>
+    </div>
+  </div>
+
   <main class="container">
     <h2 class="section-title">Nossos Produtos</h2>
     <div class="products-grid" id="productsGrid"></div>
   </main>
 
-  <!-- Modal Detalhes do Produto (Galeria) -->
+  <!-- Modal Detalhes do Produto (Galeria de 4 Fotos) -->
   <div class="modal" id="productModal">
     <div class="modal-content">
       <button class="close-modal" onclick="closeModal()">&times;</button>
@@ -103,7 +125,7 @@
     </div>
   </div>
 
-  <!-- Drawer Carrinho -->
+  <!-- Drawer Carrinho de Compras -->
   <div class="cart-drawer" id="cartDrawer">
     <div class="cart-header">
       <h3>Seu Carrinho</h3>
@@ -114,14 +136,14 @@
       <p style="text-align: center; color: var(--gray);">Seu carrinho está vazio.</p>
     </div>
 
-    <!-- Cálculo de Frete -->
+    <!-- Cálculo de Frete e Prazos de Entrega -->
     <div class="freight-box">
-      <label style="font-size: 13px; font-weight: bold; display: block; margin-bottom: 5px;">Calcular Frete (CEP):</label>
+      <label style="font-size: 13px; font-weight: bold; display: block; margin-bottom: 5px;">Calcular Frete & Prazo (CEP):</label>
       <div style="display: flex; gap: 5px;">
-        <input type="text" id="cepInput" placeholder="00000-000" maxlength="9">
+        <input type="text" id="cepInput" placeholder="Ex: 01001-000" maxlength="9">
         <button onclick="calculateFreight()">Calcular</button>
       </div>
-      <div id="freightResult" style="font-size: 13px; margin-top: 8px; color: var(--primary); font-weight: bold;"></div>
+      <div id="freightResults" style="margin-top: 10px;"></div>
     </div>
 
     <div style="border-top: 1px solid #eee; padding-top: 15px; margin-bottom: 15px;">
@@ -131,17 +153,17 @@
       </div>
     </div>
 
-    <a href="#" class="btn-checkout" id="whatsappCheckout" target="_blank" onclick="sendWhatsApp()">Finalizar no WhatsApp</a>
+    <a href="#" class="btn-checkout" id="whatsappCheckout" target="_blank" onclick="sendWhatsApp()">Finalizar Pedido no WhatsApp</a>
   </div>
 
   <script>
-    // Dados dos 6 Produtos com Galeria de Imagens
+    // 6 Produtos com 4 fotos cada para galeria
     const products = [
       {
         id: 1,
         title: "Balas Personalizadas Frases Motivacionais",
         price: 49.90,
-        desc: "Pacote com 100 balas de sabores sortidos envelopadas com frases inspiradoras.",
+        desc: "Pacote com 100 balas de sabores sortidos envelopadas com frases inspiradoras para encantar seus clientes.",
         images: [
           "https://picsum.photos/400/300?random=1",
           "https://picsum.photos/400/300?random=11",
@@ -153,7 +175,7 @@
         id: 2,
         title: "Balas Corporativas com Logotipo",
         price: 89.90,
-        desc: "Ideal para recepções e brindes de clientes. Impressão em alta qualidade com sua marca.",
+        desc: "Ideal para recepções, escritórios e brindes. Impressão em altíssima qualidade com a sua marca.",
         images: [
           "https://picsum.photos/400/300?random=2",
           "https://picsum.photos/400/300?random=21",
@@ -165,7 +187,7 @@
         id: 3,
         title: "Balas para Aniversários e Festas",
         price: 59.90,
-        desc: "Personalizamos com o tema da sua festa, nome e idade. Diversas opções de cores.",
+        desc: "Personalizamos com o tema da sua festa, nome e idade do aniversariante.",
         images: [
           "https://picsum.photos/400/300?random=3",
           "https://picsum.photos/400/300?random=31",
@@ -175,9 +197,9 @@
       },
       {
         id: 4,
-        title: "Balas Menta de Agradecimento",
+        title: "Balas Menta 'Obrigado Pela Compra'",
         price: 39.90,
-        desc: "Cartões e balas especiais de 'Obrigado pela compra' para colocar nos seus pedidos.",
+        desc: "Balas e cartões mimos para colocar dentro dos pacotes de envio do seu e-commerce.",
         images: [
           "https://picsum.photos/400/300?random=4",
           "https://picsum.photos/400/300?random=41",
@@ -189,7 +211,7 @@
         id: 5,
         title: "Kit Balas Casamento Elegante",
         price: 99.90,
-        desc: "Embalagens sofisticadas em tons pastéis e acabamento especial para festas de casamento.",
+        desc: "Embalagens sofisticadas em tons pastéis com monograma dos noivos e acabamento premium.",
         images: [
           "https://picsum.photos/400/300?random=5",
           "https://picsum.photos/400/300?random=51",
@@ -213,7 +235,7 @@
 
     let cart = [];
     let selectedProduct = null;
-    let freightValue = 0;
+    let selectedFreightCost = 0;
 
     // Renderizar Vitrine
     const grid = document.getElementById('productsGrid');
@@ -224,7 +246,7 @@
           <div class="product-info">
             <div class="product-title">${p.title}</div>
             <div class="product-price">R$ ${p.price.toFixed(2).replace('.',',')}</div>
-            <button class="btn-details">Ver Detalhes / Fotos</button>
+            <button class="btn-details">Ver Fotos & Detalhes</button>
           </div>
         </div>
       `;
@@ -291,12 +313,12 @@
               <strong>${item.title}</strong>
               <div style="font-size: 14px; color: var(--primary);">R$ ${item.price.toFixed(2).replace('.',',')}</div>
             </div>
-            <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer;">&times;</button>
+            <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer; font-size: 18px;">&times;</button>
           </div>
         `;
       });
 
-      const total = subtotal + freightValue;
+      const total = subtotal + selectedFreightCost;
       document.getElementById('cartTotal').innerText = `R$ ${total.toFixed(2).replace('.',',')}`;
     }
 
@@ -305,19 +327,35 @@
       updateCart();
     }
 
-    // Frete
+    // Calculadora de Frete com Prazos Explicitos
     function calculateFreight() {
-      const cep = document.getElementById('cepInput').value;
-      if(cep.length >= 8) {
-        freightValue = 18.50; // Valor simulado fixo
-        document.getElementById('freightResult').innerText = `Frete Padrão: R$ 18,50`;
-        updateCart();
+      const cep = document.getElementById('cepInput').value.replace(/\D/g, '');
+      const container = document.getElementById('freightResults');
+
+      if(cep.length === 8) {
+        // Simulação de opções de envio com prazos em dias úteis
+        container.innerHTML = `
+          <div class="freight-option" onclick="selectFreight(18.50)">
+            <span><strong>PAC (Econômico):</strong> R$ 18,50</span>
+            <span>📅 5 a 8 dias úteis</span>
+          </div>
+          <div class="freight-option" onclick="selectFreight(32.90)">
+            <span><strong>SEDEX (Expresso):</strong> R$ 32,90</span>
+            <span>🚀 2 a 3 dias úteis</span>
+          </div>
+        `;
+        selectFreight(18.50); // Padrão PAC
       } else {
-        alert('Por favor, digite um CEP válido.');
+        alert('Por favor, digite um CEP válido com 8 dígitos.');
       }
     }
 
-    // Enviar Pedido para WhatsApp
+    function selectFreight(val) {
+      selectedFreightCost = val;
+      updateCart();
+    }
+
+    // Enviar WhatsApp
     function sendWhatsApp() {
       if(cart.length === 0) {
         alert('Adicione pelo menos um produto ao carrinho!');
@@ -327,12 +365,15 @@
       cart.forEach(i => {
         text += `- ${i.title} (R$ ${i.price.toFixed(2).replace('.',',')})%0A`;
       });
-      if(freightValue > 0) text += `%0AFrete: R$ ${freightValue.toFixed(2).replace('.',',')}`;
+      if(selectedFreightCost > 0) {
+        text += `%0AFrete: R$ ${selectedFreightCost.toFixed(2).replace('.',',')}`;
+      }
       
-      const total = cart.reduce((acc, cur) => acc + cur.price, 0) + freightValue;
-      text += `%0A*Total: R$ ${total.toFixed(2).replace('.',',')}*`;
+      const subtotal = cart.reduce((acc, cur) => acc + cur.price, 0);
+      const total = subtotal + selectedFreightCost;
+      text += `%0A*Total do Pedido: R$ ${total.toFixed(2).replace('.',',')}*`;
 
-      // Insira seu número de WhatsApp com DDD abaixo (exemplo: 5511999999999)
+      // Insira seu telefone com DDD (ex: 5511999999999)
       const phone = "5511999999999"; 
       window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
     }
