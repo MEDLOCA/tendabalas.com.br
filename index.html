@@ -145,6 +145,30 @@
             margin-bottom: 15px;
         }
 
+        /* Bloco Informativo de Personalização (Balas com Logo) */
+        .custom-info-banner {
+            background: linear-gradient(135deg, var(--dark), #2c5282);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .custom-info-banner h3 {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .custom-info-banner p {
+            font-size: 1.05rem;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            line-height: 1.6;
+        }
+
         /* Modal da Galeria */
         .modal-overlay {
             display: none;
@@ -220,30 +244,37 @@
 
         .cart-drawer.active { display: flex; }
 
-        .cart-item-single {
-            padding: 12px 0;
-            border-bottom: 1px solid #f0f0f0;
+        .cart-item-box {
+            padding: 12px;
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 10px;
         }
 
-        .qty-controls {
+        .qty-box {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             margin-top: 8px;
         }
 
         .qty-btn {
-            background: #eee;
-            border: none;
-            width: 26px;
-            height: 26px;
-            border-radius: 4px;
+            background: #e9ecef;
+            border: 1px solid #ced4da;
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
             font-weight: bold;
+            font-size: 1rem;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .qty-btn:hover {
-            background: #ddd;
+            background: #dee2e6;
         }
 
         .freight-info-box {
@@ -253,7 +284,7 @@
             padding: 12px;
             border-radius: 8px;
             font-size: 0.85rem;
-            margin: 12px 0;
+            margin: 10px 0;
         }
 
         .freight-input-group {
@@ -261,7 +292,7 @@
             padding: 12px;
             border-radius: 8px;
             border: 1px solid #e9ecef;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .freight-input-group label {
@@ -275,7 +306,7 @@
             background-color: var(--mercadopago);
             color: white;
             border: none;
-            padding: 12px;
+            padding: 14px;
             border-radius: 25px;
             font-weight: 700;
             cursor: pointer;
@@ -286,12 +317,11 @@
             transition: 0.3s;
         }
 
-        /* Botão Desativado quando o frete não for informado */
         .btn-mp.disabled {
-            background-color: #ccc;
+            background-color: #ccc !important;
             cursor: not-allowed;
+            opacity: 0.6;
             pointer-events: none;
-            opacity: 0.7;
         }
 
         .whatsapp-float {
@@ -343,12 +373,24 @@
 
         <h2 class="section-title">Nossos Produtos</h2>
         <div class="grid" id="productsGrid">
-            <!-- 6 Quadrinhos inseridos via JS -->
+            <!-- 6 Quadrinhos dinâmicos -->
+        </div>
+
+        <!-- REINSERÇÃO DO BLOCO DE BALAS PERSONALIZADAS ACIMA DE 3000 UNIDADES -->
+        <div class="custom-info-banner">
+            <h3><i class="fa-solid fa-stamp"></i> Balas Personalizadas com sua Logomarca</h3>
+            <p>
+                Produzimos embalagens personalizadas com a marca da sua empresa! <br>
+                <strong>Pedidos de personalização a partir de 3.000 unidades.</strong> Faça a sua cotação especial diretamente com a nossa equipe comercial.
+            </p>
+            <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20fazer%20um%20orçamento%20para%20balas%20personalizadas%20com%20minha%20logo%20(acima%20de%203.000%20unidades)." target="_blank" class="btn-main" style="background-color:var(--whatsapp); color:white;">
+                <i class="fa-brands fa-whatsapp"></i> Cotar Balas Personalizadas com Logo
+            </a>
         </div>
 
     </div>
 
-    <!-- Modal da Galeria -->
+    <!-- Modal da Galeria (5 Imagens) -->
     <div class="modal-overlay" id="galleryModal">
         <div class="modal-container">
             <button class="close-btn" onclick="closeGallery()">&times;</button>
@@ -365,55 +407,59 @@
 
     <!-- Drawer Lateral do Carrinho -->
     <div class="cart-drawer" id="cartDrawer">
-        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding-bottom:15px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding-bottom:12px;">
             <h3><i class="fa-solid fa-cart-shopping"></i> Seu Carrinho</h3>
             <button class="close-btn" style="position:static;" onclick="toggleCartDrawer()">&times;</button>
         </div>
 
+        <!-- Lista de Produtos no Carrinho com Seletor [-] Qtd [+] -->
         <div style="flex-grow:1; overflow-y:auto; margin:10px 0;" id="cartItemsList">
             <p style="text-align:center; color:#888; margin-top:30px;">Seu carrinho está vazio.</p>
         </div>
 
-        <!-- Instruções de Frete -->
+        <!-- Alerta sobre Frete -->
         <div class="freight-info-box">
-            <i class="fa-solid fa-truck"></i> <strong>Importante:</strong> Consulte o valor do frete com o vendedor pelo WhatsApp. Informe o valor no campo abaixo para liberar o link do Mercado Pago.
+            <i class="fa-solid fa-truck"></i> <strong>Atenção sobre o Frete:</strong><br>
+            O valor do frete deve ser consultado primeiro com o vendedor via WhatsApp.
         </div>
 
-        <!-- Campo Manual do Frete para Liberação do Link -->
+        <!-- Campo Manual do Frete para Liberar Mercado Pago -->
         <div class="freight-input-group">
-            <label for="extraFreight">Digite o Valor do Frete Informado (R$):</label>
+            <label for="extraFreight">Valor do Frete Informado (R$):</label>
             <div style="display:flex; gap:8px;">
                 <input type="number" id="extraFreight" placeholder="0,00" step="0.01" min="0" style="flex-grow:1; padding:8px; border:1px solid #ccc; border-radius:6px;">
-                <button onclick="confirmFreight()" style="background:var(--dark); color:white; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; font-weight:600;">Confirmar</button>
+                <button onclick="applyFreight()" style="background:var(--dark); color:white; border:none; padding:8px 14px; border-radius:6px; cursor:pointer; font-weight:600;">Aplicar Frete</button>
             </div>
+            <small id="freightStatusMsg" style="color:#d9534f; font-size:0.75rem; display:block; margin-top:4px;">Insira o frete para liberar o Mercado Pago.</small>
         </div>
 
-        <div style="border-top:1px solid #eee; padding-top:10px; margin-bottom:15px;">
-            <div style="display:flex; justify-content:space-between; font-size:0.9rem; color:#666; margin-bottom:4px;">
+        <!-- Totais -->
+        <div style="border-top:1px solid #eee; padding-top:10px; margin-bottom:10px;">
+            <div style="display:flex; justify-content:space-between; font-size:0.9rem; color:#666;">
                 <span>Subtotal Produtos:</span>
                 <span id="cartSubtotalPrice">R$ 0,00</span>
             </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.9rem; color:#666; margin-bottom:8px;">
-                <span>Valor do Frete:</span>
+            <div style="display:flex; justify-content:space-between; font-size:0.9rem; color:#666; margin-bottom:4px;">
+                <span>Frete:</span>
                 <span id="cartFreightPrice">R$ 0,00</span>
             </div>
-            <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:1.15rem; color:var(--dark);">
-                <span>Total do Pedido:</span>
+            <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:1.2rem; color:var(--dark);">
+                <span>Total Final:</span>
                 <span id="cartTotalPrice">R$ 0,00</span>
             </div>
         </div>
 
-        <!-- Botões de Ação -->
-        <button class="btn-main" style="width:100%; background-color:var(--whatsapp); color:white;" onclick="checkoutWhatsApp()">
-            <i class="fa-brands fa-whatsapp"></i> 1º Consultar Frete no WhatsApp
+        <!-- Botões de Checkout -->
+        <button class="btn-main" style="width:100%; background-color:var(--whatsapp); color:white; margin-bottom:5px;" onclick="checkoutWhatsApp()">
+            <i class="fa-brands fa-whatsapp"></i> Consultar Frete / Finalizar no Whats (PIX)
         </button>
 
-        <!-- Mercado Pago só é liberado após o Frete ser confirmado pelo usuário -->
         <a href="#" class="btn-mp disabled" id="mpPayBtn" onclick="payMercadoPago(event)">
-            <i class="fa-solid fa-credit-card"></i> 2º Pagar no Mercado Pago
+            <i class="fa-solid fa-credit-card"></i> Pagar com Mercado Pago
         </a>
     </div>
 
+    <!-- Botão Flutuante WhatsApp -->
     <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20consultar%20o%20frete%20dos%20produtos." class="whatsapp-float" target="_blank" title="Fale pelo WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
@@ -423,7 +469,6 @@
     </footer>
 
     <script>
-        // LINK DO SEU MERCADO PAGO AQUI:
         const linkMercadoPago = "https://mpago.la/seu-link-aqui";
 
         const products = [
@@ -502,7 +547,8 @@
         ];
 
         let shoppingCart = [];
-        let confirmedFreightValue = 0;
+        let appliedFreight = 0;
+        let isFreightApplied = false;
 
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
@@ -585,23 +631,26 @@
             updateCartUI();
         }
 
-        function confirmFreight() {
+        function applyFreight() {
             const val = parseFloat(document.getElementById('extraFreight').value);
             if(isNaN(val) || val < 0) {
-                alert('Por favor, informe um valor de frete válido.');
+                alert('Informe um valor de frete válido.');
                 return;
             }
-            confirmedFreightValue = val;
-            updateCartUI();
-            
-            // Libera o botão do Mercado Pago
+            appliedFreight = val;
+            isFreightApplied = true;
+
             const mpBtn = document.getElementById('mpPayBtn');
+            const statusMsg = document.getElementById('freightStatusMsg');
+
             mpBtn.classList.remove('disabled');
-            alert('Valor do frete confirmado! O link do Mercado Pago já está liberado.');
+            statusMsg.innerText = "✓ Frete aplicado! Link do Mercado Pago liberado.";
+            statusMsg.style.color = "#28a745";
+
+            updateCartUI();
         }
 
         function updateCartUI() {
-            // Conta total de itens considerando quantidades
             const totalItemsCount = shoppingCart.reduce((sum, item) => sum + item.quantity, 0);
             document.getElementById('cartCount').innerText = totalItemsCount;
 
@@ -613,7 +662,6 @@
                 document.getElementById('cartFreightPrice').innerText = 'R$ 0,00';
                 document.getElementById('cartTotalPrice').innerText = 'R$ 0,00';
                 
-                // Bloqueia Mercado Pago se estiver vazio
                 document.getElementById('mpPayBtn').classList.add('disabled');
                 return;
             }
@@ -622,68 +670,66 @@
             let subtotal = 0;
 
             shoppingCart.forEach((item, idx) => {
-                const itemSubtotal = item.price * item.quantity;
-                subtotal += itemSubtotal;
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
 
                 container.innerHTML += `
-                    <div class="cart-item-single">
-                        <div style="display:flex; justify-content:space-between;">
-                            <strong>${item.name}</strong>
-                            <button onclick="removeFromCart(${idx})" style="background:none; border:none; color:red; cursor:pointer;"><i class="fa-solid fa-trash-can"></i></button>
+                    <div class="cart-item-box">
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                            <strong style="font-size:0.95rem; color:var(--dark);">${item.name}</strong>
+                            <button onclick="removeFromCart(${idx})" style="background:none; border:none; color:red; cursor:pointer; font-size:1.1rem;"><i class="fa-solid fa-trash-can"></i></button>
                         </div>
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:5px;">
-                            <div class="qty-controls">
+                        
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+                            <div class="qty-box">
+                                <span style="font-size:0.8rem; color:#666;">Qtd:</span>
                                 <button class="qty-btn" onclick="changeQty(${idx}, -1)">-</button>
-                                <span>${item.quantity}</span>
+                                <span style="font-weight:bold; width:20px; text-align:center;">${item.quantity}</span>
                                 <button class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
                             </div>
-                            <div style="color:var(--primary); font-weight:bold;">
-                                R$ ${itemSubtotal.toFixed(2).replace('.',',')}
+                            <div style="color:var(--primary); font-weight:bold; font-size:1.05rem;">
+                                R$ ${itemTotal.toFixed(2).replace('.',',')}
                             </div>
                         </div>
                     </div>
                 `;
             });
 
-            const finalTotal = subtotal + confirmedFreightValue;
+            const finalTotal = subtotal + appliedFreight;
 
             document.getElementById('cartSubtotalPrice').innerText = `R$ ${subtotal.toFixed(2).replace('.',',')}`;
-            document.getElementById('cartFreightPrice').innerText = `R$ ${confirmedFreightValue.toFixed(2).replace('.',',')}`;
+            document.getElementById('cartFreightPrice').innerText = `R$ ${appliedFreight.toFixed(2).replace('.',',')}`;
             document.getElementById('cartTotalPrice').innerText = `R$ ${finalTotal.toFixed(2).replace('.',',')}`;
         }
 
         function checkoutWhatsApp() {
             if(shoppingCart.length === 0) {
-                alert('Adicione produtos ao carrinho antes!');
+                alert('Seu carrinho está vazio!');
                 return;
             }
 
-            let msg = "Olá Tenda Balas! Gostaria de cotar o frete e fechar o pedido:%0A%0A";
+            let msg = "Olá Tenda Balas! Gostaria de consultar o frete / fechar meu pedido:%0A%0A";
             shoppingCart.forEach(item => {
-                msg += `- ${item.quantity}x ${item.name} (R$ ${(item.price * item.quantity).toFixed(2).replace('.',',')})%0A`;
+                msg += `- ${item.quantity}x ${item.name} = R$ ${(item.price * item.quantity).toFixed(2).replace('.',',')}%0A`;
             });
 
-            if(confirmedFreightValue > 0) {
-                msg += `%0AFrete Informado: R$ ${confirmedFreightValue.toFixed(2).replace('.',',')}`;
-            } else {
-                msg += `%0A*Aguardando valor do frete para o meu CEP.*`;
-            }
-
             const sub = shoppingCart.reduce((a, b) => a + (b.price * b.quantity), 0);
-            const total = sub + confirmedFreightValue;
-            msg += `%0A*Total: R$ ${total.toFixed(2).replace('.',',')}*`;
+            
+            if(isFreightApplied && appliedFreight > 0) {
+                msg += `%0AFrete Informado: R$ ${appliedFreight.toFixed(2).replace('.',',')}`;
+                msg += `%0A*Total Final: R$ ${(sub + appliedFreight).toFixed(2).replace('.',',')}*`;
+            } else {
+                msg += `%0A*Subtotal Produtos: R$ ${sub.toFixed(2).replace('.',',')}*`;
+                msg += `%0A*Aguardando cotação de frete para meu CEP.*`;
+            }
 
             window.open(`https://wa.me/5500000000000?text=${msg}`, '_blank');
         }
 
         function payMercadoPago(e) {
             e.preventDefault();
-            if(shoppingCart.length === 0) {
-                alert('Seu carrinho está vazio!');
-                return;
-            }
-            if(confirmedFreightValue === 0) {
-                alert('Por favor, confirme primeiro o valor do frete com o vendedor e digite no campo antes de pagar.');
+            if(!isFreightApplied) {
+                alert('Você precisa consultar o frete com o vendedor e clicar em "Aplicar Frete" para liberar a compra pelo Mercado Pago.');
                 return;
             }
             window.open(linkMercadoPago, '_blank');
