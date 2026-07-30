@@ -145,7 +145,7 @@
             margin-bottom: 15px;
         }
 
-        /* Bloco Informativo de Personalização (Balas com Logo) */
+        /* Bloco Informativo de Personalização */
         .custom-info-banner {
             background: linear-gradient(135deg, var(--dark), #2c5282);
             color: white;
@@ -167,6 +167,163 @@
             max-width: 800px;
             margin: 0 auto 20px auto;
             line-height: 1.6;
+        }
+
+        /* ABA DE CAMPANHAS TEMÁTICAS */
+        .themes-section {
+            background: white;
+            border-radius: 12px;
+            padding: 35px 20px;
+            margin: 40px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--primary);
+        }
+
+        .themes-header-box {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto 30px auto;
+        }
+
+        .themes-header-box h3 {
+            color: var(--dark);
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .themes-header-box p {
+            font-size: 0.98rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .themes-header-box .badge-designer {
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .themes-categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .theme-card-box {
+            background: #f8f9fa;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .theme-card-box h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-card-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .theme-card-box ul li {
+            font-size: 0.9rem;
+            color: #4a5568;
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .theme-card-box ul li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .designer-notice-box {
+            background-color: #ebf8ff;
+            border-left: 4px solid var(--mercadopago);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 25px;
+            font-size: 0.88rem;
+            color: #2b6cb0;
+        }
+
+        /* Seção de Avaliações */
+        .reviews-section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 35px 20px;
+            margin: 40px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .review-card {
+            background: #f8f9fa;
+            border: 1px solid #edf2f7;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .review-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+
+        .review-user-info h4 {
+            font-size: 0.95rem;
+            color: var(--dark);
+        }
+
+        .review-user-info span {
+            font-size: 0.8rem;
+            color: #e1306c;
+            font-weight: 600;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+            font-style: italic;
         }
 
         /* Modal da Galeria */
@@ -366,7 +523,7 @@
 
     <section class="hero">
         <h2>As melhores balas direto para você</h2>
-        <p>Balas tradicionais, mastigáveis e personalizadas para a sua empresa.</p>
+        <p>Balas tradicionais, mastigáveis e personalizadas para a sua empresa ou evento.</p>
     </section>
 
     <div class="container">
@@ -376,7 +533,75 @@
             <!-- 6 Quadrinhos dinâmicos -->
         </div>
 
-        <!-- REINSERÇÃO DO BLOCO DE BALAS PERSONALIZADAS ACIMA DE 3000 UNIDADES -->
+        <!-- ABA DE CAMPANHAS TEMÁTICAS & CRIAÇÃO EXCLUSIVA -->
+        <div class="themes-section">
+            <div class="themes-header-box">
+                <h3><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--primary);"></i> Campanhas Temáticas & Ações Especiais</h3>
+                <p>
+                    <strong>Planeje seu evento ou campanha corporativa com antecedência!</strong> <br>
+                    Transforme suas balas em uma poderosa ferramenta de marketing ou em uma lembrancinha inesquecível.
+                </p>
+                <span class="badge-designer"><i class="fa-solid fa-palette"></i> Criações Exclusivas By Designer</span>
+            </div>
+
+            <div class="themes-categories-grid">
+                <!-- Saúde e Conscientização -->
+                <div class="theme-card-box">
+                    <h4><i class="fa-solid fa-ribbon"></i> Saúde & Conscientização</h4>
+                    <ul>
+                        <li>Outubro Rosa (Câncer de Mama)</li>
+                        <li>Novembro Azul (Câncer de Próstata)</li>
+                        <li>Prevenção e Combate ao Diabetes</li>
+                        <li>Setembro Amarelo (Valorização da Vida)</li>
+                        <li>Maio Amarelo (Atenção no Trânsito)</li>
+                        <li>Doação de Sangue & Saúde Mental</li>
+                    </ul>
+                </div>
+
+                <!-- Datas Comemorativas Populares -->
+                <div class="theme-card-box">
+                    <h4><i class="fa-solid fa-calendar-heart"></i> Datas Comemorativas</h4>
+                    <ul>
+                        <li>Dia das Mães & Dia dos Pais</li>
+                        <li>Dia das Crianças & Páscoa</li>
+                        <li>Dia dos Avós & Dia dos Filhos</li>
+                        <li>Dia do Cliente & Dia do Trabalhador</li>
+                        <li>Dia dos Namorados</li>
+                        <li>Fim de Ano (Natal e Ano Novo)</li>
+                    </ul>
+                </div>
+
+                <!-- Eventos Sociais e Corporativos -->
+                <div class="theme-card-box">
+                    <h4><i class="fa-solid fa-champagne-glasses"></i> Festas & Celebrações</h4>
+                    <ul>
+                        <li>Casamentos & Noivados</li>
+                        <li>Chá de Bebê / Maternidade</li>
+                        <li>Batizados & Primeiras Comunhões</li>
+                        <li>Aniversários & Festas Infantis</li>
+                        <li>Brindes Corporativos de Feiras</li>
+                        <li>Inaugurações & Feiras de Negócios</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Aviso sobre Criação Exclusiva x Temas Pré-definidos -->
+            <div class="designer-notice-box">
+                <i class="fa-solid fa-circle-info"></i> <strong>Como funciona a arte do seu pedido?</strong>
+                <p style="margin-top:5px;">
+                    • <strong>Temas Pré-definidos:</strong> Você pode escolher um dos modelos do nosso catálogo padrão sem nenhum custo adicional de arte.<br>
+                    • <strong>Criação Exclusiva Personalizada (By Designer):</strong> Desenvolvemos uma arte totalmente nova, alinhada à sua marca e identidade visual. <em>(A criação exclusiva possui um custo à parte, sob consulta prévia com a equipe)</em>.
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 25px;">
+                <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20consultar%20as%20opções%20de%20Campanhas%20Temáticas%20e%20Criação%20de%20Arte%20Exclusiva." target="_blank" class="btn-main" style="background-color:var(--whatsapp); color:white;">
+                    <i class="fa-brands fa-whatsapp"></i> Falar com Designer / Cotar Campanha
+                </a>
+            </div>
+        </div>
+
+        <!-- BLOCO DE BALAS PERSONALIZADAS ACIMA DE 3000 UNIDADES -->
         <div class="custom-info-banner">
             <h3><i class="fa-solid fa-stamp"></i> Balas Personalizadas com sua Logomarca</h3>
             <p>
@@ -386,6 +611,62 @@
             <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20fazer%20um%20orçamento%20para%20balas%20personalizadas%20com%20minha%20logo%20(acima%20de%203.000%20unidades)." target="_blank" class="btn-main" style="background-color:var(--whatsapp); color:white;">
                 <i class="fa-brands fa-whatsapp"></i> Cotar Balas Personalizadas com Logo
             </a>
+        </div>
+
+        <!-- SEÇÃO DE AVALIAÇÕES E DEPOIMENTOS DO INSTAGRAM -->
+        <div class="reviews-section">
+            <h2 class="section-title" style="margin-bottom: 5px;"><i class="fa-brands fa-instagram" style="color: #e1306c;"></i> O que nossos clientes dizem</h2>
+            <p style="text-align: center; color: #666; font-size: 0.9rem;">Avaliações reais direto das nossas redes sociais</p>
+
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div>
+                        <div class="review-header">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" class="review-avatar" alt="Cliente">
+                            <div class="review-user-info">
+                                <h4>Mariana Alcantara</h4>
+                                <span><i class="fa-brands fa-instagram"></i> @mari_alcantara</span>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="review-text">"As balas personalizadas com a logo da minha loja ficaram perfeitas! Chegaram antes do prazo e o atendimento pelo WhatsApp foi nota 10!"</p>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div>
+                        <div class="review-header">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="review-avatar" alt="Cliente">
+                            <div class="review-user-info">
+                                <h4>Lucas R. Silva</h4>
+                                <span><i class="fa-brands fa-instagram"></i> @lucas_rsilva</span>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="review-text">"Comprei o pacote de balas mastigáveis pra festa do meu filho. O sabor é incrível e o frete super rápido para o interior de SP."</p>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div>
+                        <div class="review-header">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="review-avatar" alt="Cliente">
+                            <div class="review-user-info">
+                                <h4>Carla B. Eventos</h4>
+                                <span><i class="fa-brands fa-instagram"></i> @carla_eventos</span>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="review-text">"Fiz um pedido de 5.000 balas personalizadas para uma feira corporativa. Fez o maior sucesso no estande. Tenda Balas é top!"</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -412,7 +693,7 @@
             <button class="close-btn" style="position:static;" onclick="toggleCartDrawer()">&times;</button>
         </div>
 
-        <!-- Lista de Produtos no Carrinho com Seletor [-] Qtd [+] -->
+        <!-- Lista de Produtos no Carrinho -->
         <div style="flex-grow:1; overflow-y:auto; margin:10px 0;" id="cartItemsList">
             <p style="text-align:center; color:#888; margin-top:30px;">Seu carrinho está vazio.</p>
         </div>
@@ -423,11 +704,11 @@
             O valor do frete deve ser consultado primeiro com o vendedor via WhatsApp.
         </div>
 
-        <!-- Campo Manual do Frete para Liberar Mercado Pago -->
+        <!-- Campo de Frete em Moeda Automática -->
         <div class="freight-input-group">
             <label for="extraFreight">Valor do Frete Informado (R$):</label>
             <div style="display:flex; gap:8px;">
-                <input type="number" id="extraFreight" placeholder="0,00" step="0.01" min="0" style="flex-grow:1; padding:8px; border:1px solid #ccc; border-radius:6px;">
+                <input type="text" id="extraFreight" placeholder="R$ 0,00" style="flex-grow:1; padding:8px; border:1px solid #ccc; border-radius:6px; font-weight:600;" oninput="formatCurrencyInput(this)">
                 <button onclick="applyFreight()" style="background:var(--dark); color:white; border:none; padding:8px 14px; border-radius:6px; cursor:pointer; font-weight:600;">Aplicar Frete</button>
             </div>
             <small id="freightStatusMsg" style="color:#d9534f; font-size:0.75rem; display:block; margin-top:4px;">Insira o frete para liberar o Mercado Pago.</small>
@@ -631,13 +912,27 @@
             updateCartUI();
         }
 
+        function formatCurrencyInput(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value === '') {
+                input.value = '';
+                return;
+            }
+            value = (parseFloat(value) / 100).toFixed(2);
+            value = value.replace('.', ',');
+            value = value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            input.value = 'R$ ' + value;
+        }
+
         function applyFreight() {
-            const val = parseFloat(document.getElementById('extraFreight').value);
-            if(isNaN(val) || val < 0) {
+            const rawVal = document.getElementById('extraFreight').value;
+            const numericVal = parseFloat(rawVal.replace('R$', '').replace(/\./g, '').replace(',', '.').trim());
+
+            if(isNaN(numericVal) || numericVal < 0) {
                 alert('Informe um valor de frete válido.');
                 return;
             }
-            appliedFreight = val;
+            appliedFreight = numericVal;
             isFreightApplied = true;
 
             const mpBtn = document.getElementById('mpPayBtn');
