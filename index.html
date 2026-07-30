@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tenda Balas | Balas Tradicionais e Personalizadas para Empresas</title>
+    <title>Tenda Balas | Balas Tradicionais e Personalizadas</title>
     <!-- Google Fonts & Font Awesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,6 +15,7 @@
             --accent: #ffb703;
             --dark: #1d3557;
             --whatsapp: #25d366;
+            --mercadopago: #009ee3;
         }
 
         * {
@@ -34,7 +35,6 @@
             background-color: var(--primary);
             color: white;
             padding: 15px 20px;
-            text-align: center;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -44,14 +44,9 @@
             align-items: center;
         }
 
-        header .header-info {
-            text-align: left;
-        }
-
         header h1 {
             font-size: 1.8rem;
             font-weight: 700;
-            letter-spacing: 1px;
         }
 
         .cart-btn-header {
@@ -65,7 +60,6 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.9rem;
         }
 
         .cart-count {
@@ -84,16 +78,6 @@
             text-align: center;
         }
 
-        .hero h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
         .btn-main {
             background-color: var(--accent);
             color: var(--dark);
@@ -105,10 +89,6 @@
             text-decoration: none;
             display: inline-block;
             transition: 0.3s;
-        }
-
-        .btn-main:hover {
-            transform: scale(1.05);
         }
 
         .container {
@@ -136,14 +116,9 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: 0.3s;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
         }
 
         .card img {
@@ -155,14 +130,10 @@
 
         .card-body {
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            justify-content: space-between;
         }
 
         .card-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--dark);
             margin-bottom: 8px;
         }
@@ -174,58 +145,121 @@
             margin-bottom: 15px;
         }
 
-        .custom-box {
-            background: #ffffff;
-            border: 2px dashed var(--primary);
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 30px;
+        /* Modal da Galeria de Fotos */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
-        .form-group {
+        .modal-overlay.active { display: flex; }
+
+        .modal-container {
+            background: white;
+            border-radius: 12px;
+            max-width: 700px;
+            width: 100%;
+            padding: 25px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px; right: 15px;
+            font-size: 1.8rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .modal-main-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .modal-thumbs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .thumb-img {
+            width: 65px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .thumb-img.active {
+            border-color: var(--primary);
+        }
+
+        /* Drawer Lateral do Carrinho */
+        .cart-drawer {
+            display: none;
+            position: fixed;
+            top: 0; right: 0;
+            width: 100%; max-width: 420px; height: 100%;
+            background: white;
+            z-index: 2001;
+            box-shadow: -4px 0 15px rgba(0,0,0,0.2);
+            padding: 20px;
+            flex-direction: column;
+        }
+
+        .cart-drawer.active { display: flex; }
+
+        .freight-info-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin: 15px 0;
+        }
+
+        .freight-input-box {
             margin-bottom: 15px;
         }
 
-        .form-group label {
-            display: block;
+        .freight-input-box label {
+            font-size: 0.85rem;
             font-weight: 600;
+            display: block;
             margin-bottom: 5px;
-            color: var(--dark);
         }
 
-        .form-group input, .form-group select {
+        .freight-input-box input {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             border: 1px solid #ccc;
             border-radius: 6px;
-            font-size: 1rem;
         }
 
-        .alert-info {
-            background-color: #e8f4fd;
-            color: #1d3557;
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            margin-top: 5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .insta-banner {
-            background-color: var(--dark);
+        .btn-mp {
+            background-color: var(--mercadopago);
             color: white;
-            text-align: center;
-            padding: 30px 20px;
-            border-radius: 12px;
-            margin-top: 40px;
-        }
-
-        .insta-banner a {
-            color: var(--accent);
-            text-decoration: none;
+            border: none;
+            padding: 12px;
+            border-radius: 25px;
             font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
         }
 
         .whatsapp-float {
@@ -245,11 +279,6 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
         }
 
         footer {
@@ -259,136 +288,12 @@
             color: #666;
             margin-top: 40px;
         }
-
-        /* --- NOVOS RECURSOS ADICIONADOS --- */
-
-        /* Modal da Galeria de Fotos */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .modal-overlay.active { display: flex; }
-
-        .modal-container {
-            background: white;
-            border-radius: 12px;
-            max-width: 750px;
-            width: 100%;
-            padding: 25px;
-            position: relative;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        @media(max-width: 650px) {
-            .modal-container { grid-template-columns: 1fr; }
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px; right: 15px;
-            font-size: 1.8rem;
-            border: none;
-            background: none;
-            cursor: pointer;
-            color: #666;
-        }
-
-        .modal-main-img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-
-        .modal-thumbs {
-            display: flex;
-            gap: 10px;
-        }
-
-        .thumb-img {
-            width: 55px;
-            height: 55px;
-            object-fit: cover;
-            border-radius: 6px;
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-
-        .thumb-img.active {
-            border-color: var(--primary);
-        }
-
-        /* Lateral do Carrinho (Drawer) */
-        .cart-drawer {
-            display: none;
-            position: fixed;
-            top: 0; right: 0;
-            width: 100%; max-width: 400px; height: 100%;
-            background: white;
-            z-index: 2001;
-            box-shadow: -4px 0 15px rgba(0,0,0,0.2);
-            padding: 20px;
-            flex-direction: column;
-        }
-
-        .cart-drawer.active { display: flex; }
-
-        .cart-header-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
-        }
-
-        .cart-items-list {
-            flex-grow: 1;
-            overflow-y: auto;
-            margin: 15px 0;
-        }
-
-        .cart-item-single {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .freight-box {
-            background: #f8f9fa;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #eee;
-        }
-
-        .freight-result-item {
-            font-size: 0.85rem;
-            margin-top: 8px;
-            padding: 6px;
-            background: white;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            display: flex;
-            justify-content: space-between;
-        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="header-info">
+        <div>
             <h1>TENDA BALAS</h1>
             <p style="font-size: 0.85rem; opacity: 0.9;">tendabalas.com.br</p>
         </div>
@@ -399,268 +304,199 @@
 
     <section class="hero">
         <h2>As melhores balas direto para você</h2>
-        <p>Balas tradicionais, mastigáveis e personalizadas com a logo da sua empresa.</p>
-        <a href="#personalizados" class="btn-main"><i class="fa-solid fa-paintbrush"></i> Faça Balas Personalizadas</a>
+        <p>Balas tradicionais, mastigáveis e personalizadas para a sua empresa.</p>
     </section>
 
     <div class="container">
 
-        <h2 class="section-title">Nossos Produtos em Destaque</h2>
-        <div class="grid">
-            
-            <!-- Produto 1 -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=500&q=80" alt="Bala Mastigável Frutas" onclick="openGallery(0)">
-                <div class="card-body">
-                    <h3 class="card-title">Bala Mastigável Sortida (Pacote 600g)</h3>
-                    <p class="card-price">R$ 18,90</p>
-                    <button class="btn-main" style="width:100%; margin-bottom:5px;" onclick="addToCart(0)">Comprar Agora</button>
-                    <button class="btn-main" style="width:100%; background-color:#e0e0e0; color:#333;" onclick="openGallery(0)">Ver Fotos</button>
-                </div>
-            </div>
-
-            <!-- Produto 2 -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1575224300306-1b8da36134ec?auto=format&fit=crop&w=500&q=80" alt="Bala Dura Hortelã" onclick="openGallery(1)">
-                <div class="card-body">
-                    <h3 class="card-title">Bala Dura Refrescante Hortelã (500g)</h3>
-                    <p class="card-price">R$ 15,50</p>
-                    <button class="btn-main" style="width:100%; margin-bottom:5px;" onclick="addToCart(1)">Comprar Agora</button>
-                    <button class="btn-main" style="width:100%; background-color:#e0e0e0; color:#333;" onclick="openGallery(1)">Ver Fotos</button>
-                </div>
-            </div>
-
-            <!-- Produto 3 -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1621939514649-280e2ee25f60?auto=format&fit=crop&w=500&q=80" alt="Gomas e Jujubas" onclick="openGallery(2)">
-                <div class="card-body">
-                    <h3 class="card-title">Goma de Mascar / Jujuba Colorida (1kg)</h3>
-                    <p class="card-price">R$ 28,00</p>
-                    <button class="btn-main" style="width:100%; margin-bottom:5px;" onclick="addToCart(2)">Comprar Agora</button>
-                    <button class="btn-main" style="width:100%; background-color:#e0e0e0; color:#333;" onclick="openGallery(2)">Ver Fotos</button>
-                </div>
-            </div>
-
-            <!-- Produto 4 (Novo) -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1581798459219-318e76aecc7b?auto=format&fit=crop&w=500&q=80" alt="Bala Toffee Caramelo" onclick="openGallery(3)">
-                <div class="card-body">
-                    <h3 class="card-title">Bala Toffee Caramelo Premium (500g)</h3>
-                    <p class="card-price">R$ 24,90</p>
-                    <button class="btn-main" style="width:100%; margin-bottom:5px;" onclick="addToCart(3)">Comprar Agora</button>
-                    <button class="btn-main" style="width:100%; background-color:#e0e0e0; color:#333;" onclick="openGallery(3)">Ver Fotos</button>
-                </div>
-            </div>
-
-            <!-- Produto 5 (Novo) -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1532117892862-274641617300?auto=format&fit=crop&w=500&q=80" alt="Bala de Café Espacial" onclick="openGallery(4)">
-                <div class="card-body">
-                    <h3 class="card-title">Bala de Café Gourmet Intenso (400g)</h3>
-                    <p class="card-price">R$ 21,00</p>
-                    <button class="btn-main" style="width:100%; margin-bottom:5px;" onclick="addToCart(4)">Comprar Agora</button>
-                    <button class="btn-main" style="width:100%; background-color:#e0e0e0; color:#333;" onclick="openGallery(4)">Ver Fotos</button>
-                </div>
-            </div>
-
-            <!-- Produto 6 (Novo) -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80" alt="Kit Balas de Canela" onclick="openGallery(5)">
-                <div class="card-body">
-                    <h3 class="card-title">Bala Dura de Canela Picante (500g)</h3>
-                    <p class="card-price">R$ 16,90</p>
-                    <button class="btn-main" style="width:100%; margin-bottom:5px;" onclick="addToCart(5)">Comprar Agora</button>
-                    <button class="btn-main" style="width:100%; background-color:#e0e0e0; color:#333;" onclick="openGallery(5)">Ver Fotos</button>
-                </div>
-            </div>
-
-        </div>
-
-        <div id="personalizados" class="custom-box">
-            <h2 class="section-title" style="margin-bottom:10px;">🍬 Balas Personalizadas com a Sua Marca</h2>
-            <p style="text-align:center; color:#666; margin-bottom:20px;">Ideal para comércios, clínicas, eventos e brindes corporativos.</p>
-
-            <form id="customForm" onsubmit="enviarPedidoPersonalizado(event)">
-                <div class="form-group">
-                    <label for="flavor">Escolha o Sabor da Bala:</label>
-                    <select id="flavor" required>
-                        <option value="Frutas Sortidas">Frutas Sortidas (Mastigável)</option>
-                        <option value="Hortelã / Menta">Hortelã / Menta (Dura)</option>
-                        <option value="Café Premium">Café Premium</option>
-                        <option value="Toffee Caramelo">Toffee Caramelo</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="quantity">Quantidade de Balas:</label>
-                    <input type="number" id="quantity" min="3000" value="3000" step="500" required onchange="validarQuantidade()">
-                    <div class="alert-info">
-                        <i class="fa-solid fa-circle-info"></i>
-                        <span><strong>Pedido Mínimo:</strong> 3.000 unidades para embalagens personalizadas.</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="logo">Envie sua Logomarca (PNG, JPG ou PDF):</label>
-                    <input type="file" id="logo" accept="image/*,.pdf" required>
-                </div>
-
-                <button type="submit" class="btn-main" style="width:100%; background-color: var(--primary); color:white; font-size:1.1rem; padding:15px;">
-                    <i class="fa-brands fa-whatsapp"></i> Solicitar Orçamento no WhatsApp
-                </button>
-            </form>
-        </div>
-
-        <div class="insta-banner">
-            <i class="fa-brands fa-instagram" style="font-size: 3rem; margin-bottom: 10px;"></i>
-            <h3>Siga a Tenda Balas no Instagram!</h3>
-            <p>Acompanhe nossos lançamentos e fotos de clientes em <a href="https://instagram.com" target="_blank">@tendabalas.oficial</a></p>
+        <h2 class="section-title">Nossos Produtos</h2>
+        <div class="grid" id="productsGrid">
+            <!-- 6 Quadrinhos inseridos dinamicamente via JS -->
         </div>
 
     </div>
 
-    <a href="https://wa.me/5500000000000?text=Olá!%20Vim%20pelo%20site%20tendabalas.com.br%20e%20gostaria%20de%20tirar%20uma%20dúvida." class="whatsapp-float" target="_blank" title="Fale pelo WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <!-- Pop-up da Galeria de Fotos -->
+    <!-- Modal da Galeria (5 Imagens para explorar) -->
     <div class="modal-overlay" id="galleryModal">
         <div class="modal-container">
             <button class="close-btn" onclick="closeGallery()">&times;</button>
-            <div>
-                <img src="" id="modalImgMain" class="modal-main-img" alt="Foto Ampliada">
-                <div class="modal-thumbs" id="modalThumbsList"></div>
-            </div>
-            <div style="display:flex; flex-direction:column; justify-content:center;">
-                <h3 id="modalProductTitle" style="color:var(--dark); margin-bottom:10px;"></h3>
-                <p id="modalProductPrice" style="color:var(--primary); font-size:1.4rem; font-weight:bold; margin-bottom:15px;"></p>
-                <button class="btn-main" style="width:100%;" id="modalBuyBtn">Adicionar ao Carrinho</button>
+            <h3 id="modalProductTitle" style="color:var(--dark); margin-bottom:10px;"></h3>
+            <img src="" id="modalImgMain" class="modal-main-img" alt="Foto Ampliada">
+            <div class="modal-thumbs" id="modalThumbsList"></div>
+            
+            <div style="margin-top:15px; display:flex; justify-content:space-between; align-items:center;">
+                <span id="modalProductPrice" style="color:var(--primary); font-size:1.4rem; font-weight:bold;"></span>
+                <button class="btn-main" id="modalBuyBtn">Adicionar ao Carrinho</button>
             </div>
         </div>
     </div>
 
-    <!-- Gaveta Lateral do Carrinho de Compras -->
+    <!-- Drawer Lateral do Carrinho -->
     <div class="cart-drawer" id="cartDrawer">
-        <div class="cart-header-title">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding-bottom:15px;">
             <h3><i class="fa-solid fa-cart-shopping"></i> Seu Carrinho</h3>
             <button class="close-btn" style="position:static;" onclick="toggleCartDrawer()">&times;</button>
         </div>
 
-        <div class="cart-items-list" id="cartItemsList">
+        <div style="flex-grow:1; overflow-y:auto; margin:15px 0;" id="cartItemsList">
             <p style="text-align:center; color:#888; margin-top:30px;">Seu carrinho está vazio.</p>
         </div>
 
-        <!-- Calculadora de Frete -->
-        <div class="freight-box">
-            <label style="font-size:0.85rem; font-weight:bold; display:block; margin-bottom:5px;">Calcular Frete e Prazo de Entrega:</label>
-            <div style="display:flex; gap:5px;">
-                <input type="text" id="cepInput" placeholder="00000-000" style="padding:8px; border:1px solid #ccc; border-radius:4px; width:65%;">
-                <button onclick="calculateFreight()" style="padding:8px; background:var(--dark); color:white; border:none; border-radius:4px; cursor:pointer;">Calcular</button>
-            </div>
-            <div id="freightResultsBox"></div>
+        <!-- Aviso Importante do Frete -->
+        <div class="freight-info-box">
+            <i class="fa-solid fa-truck"></i> <strong>Atenção sobre o Frete:</strong><br>
+            O valor do frete precisa ser consultado previamente com o vendedor pois varia para cada região e quantidade.
+        </div>
+
+        <!-- Campo para Incluir Valor de Frete se Confirmado -->
+        <div class="freight-input-box">
+            <label for="extraFreight">Valor do Frete Confirmado (R$):</label>
+            <input type="number" id="extraFreight" placeholder="0,00" step="0.01" min="0" oninput="updateCartUI()">
         </div>
 
         <div style="border-top:1px solid #eee; padding-top:10px; margin-bottom:15px;">
             <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:1.1rem;">
-                <span>Total:</span>
+                <span>Total Final:</span>
                 <span id="cartTotalPrice">R$ 0,00</span>
             </div>
         </div>
 
+        <!-- Botões de Checkout -->
         <button class="btn-main" style="width:100%; background-color:var(--whatsapp); color:white;" onclick="checkoutWhatsApp()">
-            <i class="fa-brands fa-whatsapp"></i> Finalizar Pedido no WhatsApp
+            <i class="fa-brands fa-whatsapp"></i> Consultar Frete / Finalizar no Whats
         </button>
+
+        <a href="#" class="btn-mp" onclick="payMercadoPago(event)">
+            <i class="fa-solid fa-credit-card"></i> Pagar com Mercado Pago
+        </a>
     </div>
+
+    <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20consultar%20o%20frete%20dos%20produtos." class="whatsapp-float" target="_blank" title="Fale pelo WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
     <footer>
         <p>© 2026 Tenda Balas - tendabalas.com.br - Todos os direitos reservados.</p>
     </footer>
 
     <script>
-        // Dados dos 6 Produtos com Fotos Exclusivas para a Galeria
-        const allProducts = [
+        // SEU LINK DO MERCADO PAGO AQUI:
+        const linkMercadoPago = "https://mpago.la/seu-link-aqui";
+
+        // Lista dos 6 Produtos com 5 Imagens em cada Galeria
+        const products = [
             {
+                id: 0,
                 name: "Bala Mastigável Sortida (Pacote 600g)",
                 price: 18.90,
                 images: [
                     "https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=500&q=80",
-                    "https://picsum.photos/500/350?random=101",
-                    "https://picsum.photos/500/350?random=102",
-                    "https://picsum.photos/500/350?random=103"
+                    "https://picsum.photos/500/350?random=11",
+                    "https://picsum.photos/500/350?random=12",
+                    "https://picsum.photos/500/350?random=13",
+                    "https://picsum.photos/500/350?random=14"
                 ]
             },
             {
+                id: 1,
                 name: "Bala Dura Refrescante Hortelã (500g)",
                 price: 15.50,
                 images: [
                     "https://images.unsplash.com/photo-1575224300306-1b8da36134ec?auto=format&fit=crop&w=500&q=80",
-                    "https://picsum.photos/500/350?random=201",
-                    "https://picsum.photos/500/350?random=202",
-                    "https://picsum.photos/500/350?random=203"
+                    "https://picsum.photos/500/350?random=21",
+                    "https://picsum.photos/500/350?random=22",
+                    "https://picsum.photos/500/350?random=23",
+                    "https://picsum.photos/500/350?random=24"
                 ]
             },
             {
+                id: 2,
                 name: "Goma de Mascar / Jujuba Colorida (1kg)",
                 price: 28.00,
                 images: [
                     "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?auto=format&fit=crop&w=500&q=80",
-                    "https://picsum.photos/500/350?random=301",
-                    "https://picsum.photos/500/350?random=302",
-                    "https://picsum.photos/500/350?random=303"
+                    "https://picsum.photos/500/350?random=31",
+                    "https://picsum.photos/500/350?random=32",
+                    "https://picsum.photos/500/350?random=33",
+                    "https://picsum.photos/500/350?random=34"
                 ]
             },
             {
+                id: 3,
                 name: "Bala Toffee Caramelo Premium (500g)",
                 price: 24.90,
                 images: [
                     "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?auto=format&fit=crop&w=500&q=80",
-                    "https://picsum.photos/500/350?random=401",
-                    "https://picsum.photos/500/350?random=402",
-                    "https://picsum.photos/500/350?random=403"
+                    "https://picsum.photos/500/350?random=41",
+                    "https://picsum.photos/500/350?random=42",
+                    "https://picsum.photos/500/350?random=43",
+                    "https://picsum.photos/500/350?random=44"
                 ]
             },
             {
+                id: 4,
                 name: "Bala de Café Gourmet Intenso (400g)",
                 price: 21.00,
                 images: [
                     "https://images.unsplash.com/photo-1532117892862-274641617300?auto=format&fit=crop&w=500&q=80",
-                    "https://picsum.photos/500/350?random=501",
-                    "https://picsum.photos/500/350?random=502",
-                    "https://picsum.photos/500/350?random=503"
+                    "https://picsum.photos/500/350?random=51",
+                    "https://picsum.photos/500/350?random=52",
+                    "https://picsum.photos/500/350?random=53",
+                    "https://picsum.photos/500/350?random=54"
                 ]
             },
             {
+                id: 5,
                 name: "Bala Dura de Canela Picante (500g)",
                 price: 16.90,
                 images: [
                     "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80",
-                    "https://picsum.photos/500/350?random=601",
-                    "https://picsum.photos/500/350?random=602",
-                    "https://picsum.photos/500/350?random=603"
+                    "https://picsum.photos/500/350?random=61",
+                    "https://picsum.photos/500/350?random=62",
+                    "https://picsum.photos/500/350?random=63",
+                    "https://picsum.photos/500/350?random=64"
                 ]
             }
         ];
 
         let shoppingCart = [];
-        let selectedFreight = 0;
 
-        // Galeria de Fotos (Popup Modal)
-        function openGallery(index) {
-            const prod = allProducts[index];
+        // Renderizar Quadrinhos na Tela
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            products.forEach(p => {
+                grid.innerHTML += `
+                    <div class="card">
+                        <img src="${p.images[0]}" alt="${p.name}" onclick="openGallery(${p.id})">
+                        <div class="card-body">
+                            <h3 class="card-title">${p.name}</h3>
+                            <p class="card-price">R$ ${p.price.toFixed(2).replace('.',',')}</p>
+                            <button class="btn-main" style="width:100%; margin-bottom:8px;" onclick="addToCart(${p.id})">Adicionar ao Carrinho</button>
+                            <button class="btn-main" style="width:100%; background-color:#e0e0e0; color:#333;" onclick="openGallery(${p.id})">Ver + Fotos</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Abrir Galeria com 5 Imagens
+        function openGallery(id) {
+            const prod = products[id];
             document.getElementById('modalProductTitle').innerText = prod.name;
             document.getElementById('modalProductPrice').innerText = `R$ ${prod.price.toFixed(2).replace('.',',')}`;
             
             const mainImg = document.getElementById('modalImgMain');
             mainImg.src = prod.images[0];
 
-            const thumbsBox = document.getElementById('modalThumbsList');
-            thumbsBox.innerHTML = '';
-            prod.images.forEach((imgUrl, i) => {
-                thumbsBox.innerHTML += `<img src="${imgUrl}" class="thumb-img ${i === 0 ? 'active' : ''}" onclick="swapModalImg('${imgUrl}', this)">`;
+            const thumbsList = document.getElementById('modalThumbsList');
+            thumbsList.innerHTML = '';
+            prod.images.forEach((imgUrl, idx) => {
+                thumbsList.innerHTML += `<img src="${imgUrl}" class="thumb-img ${idx === 0 ? 'active' : ''}" onclick="swapModalImg('${imgUrl}', this)">`;
             });
 
             document.getElementById('modalBuyBtn').onclick = function() {
-                addToCart(index);
+                addToCart(id);
                 closeGallery();
             };
 
@@ -677,19 +513,19 @@
             document.getElementById('galleryModal').classList.remove('active');
         }
 
-        // Sistema de Carrinho de Compras
+        // Controle do Carrinho
         function toggleCartDrawer() {
             document.getElementById('cartDrawer').classList.toggle('active');
         }
 
-        function addToCart(index) {
-            shoppingCart.push(allProducts[index]);
+        function addToCart(id) {
+            shoppingCart.push(products[id]);
             updateCartUI();
-            alert('Item adicionado ao carrinho!');
+            alert('Produto adicionado ao carrinho!');
         }
 
-        function removeFromCart(i) {
-            shoppingCart.splice(i, 1);
+        function removeFromCart(index) {
+            shoppingCart.splice(index, 1);
             updateCartUI();
         }
 
@@ -708,95 +544,57 @@
             shoppingCart.forEach((item, idx) => {
                 subtotal += item.price;
                 container.innerHTML += `
-                    <div class="cart-item-single">
+                    <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #f0f0f0;">
                         <div>
                             <strong>${item.name}</strong>
                             <div style="color:var(--primary); font-weight:bold;">R$ ${item.price.toFixed(2).replace('.',',')}</div>
                         </div>
-                        <button onclick="removeFromCart(${idx})" style="background:none; border:none; color:red; cursor:pointer; font-size:1.2rem;"><i class="fa-solid fa-trash-can"></i></button>
+                        <button onclick="removeFromCart(${idx})" style="background:none; border:none; color:red; cursor:pointer; font-size:1.1rem;"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
                 `;
             });
 
-            const finalTotal = subtotal + selectedFreight;
+            const extraFreightValue = parseFloat(document.getElementById('extraFreight').value) || 0;
+            const finalTotal = subtotal + extraFreightValue;
             document.getElementById('cartTotalPrice').innerText = `R$ ${finalTotal.toFixed(2).replace('.',',')}`;
-        }
-
-        // Calculadora de Frete com Prazos em Dias Úteis
-        function calculateFreight() {
-            const cep = document.getElementById('cepInput').value.replace(/\D/g, '');
-            const box = document.getElementById('freightResultsBox');
-
-            if(cep.length === 8) {
-                box.innerHTML = `
-                    <div class="freight-result-item" onclick="applyFreight(16.50)">
-                        <span><strong>PAC (Econômico):</strong> R$ 16,50</span>
-                        <span>📦 5 a 8 dias úteis</span>
-                    </div>
-                    <div class="freight-result-item" onclick="applyFreight(29.90)">
-                        <span><strong>SEDEX (Expresso):</strong> R$ 29,90</span>
-                        <span>🚀 2 a 3 dias úteis</span>
-                    </div>
-                `;
-                applyFreight(16.50); // Valor padrão inicial
-            } else {
-                alert('Por favor, informe um CEP válido com 8 dígitos.');
-            }
-        }
-
-        function applyFreight(value) {
-            selectedFreight = value;
-            updateCartUI();
         }
 
         function checkoutWhatsApp() {
             if(shoppingCart.length === 0) {
-                alert('Adicione pelo menos um produto ao seu carrinho primeiro!');
+                alert('Adicione ao menos um produto ao carrinho!');
                 return;
             }
 
-            let msg = "Olá Tenda Balas! Gostaria de finalizar o meu pedido:%0A%0A";
-            shoppingCart.forEach(prod => {
-                msg += `- ${prod.name} (R$ ${prod.price.toFixed(2).replace('.',',')})%0A`;
+            let msg = "Olá Tenda Balas! Gostaria de consultar o frete e finalizar o pedido:%0A%0A";
+            shoppingCart.forEach(item => {
+                msg += `- ${item.name} (R$ ${item.price.toFixed(2).replace('.',',')})%0A`;
             });
 
-            if(selectedFreight > 0) {
-                msg += `%0AFrete Selecionado: R$ ${selectedFreight.toFixed(2).replace('.',',')}`;
+            const extraFreightValue = parseFloat(document.getElementById('extraFreight').value) || 0;
+            if(extraFreightValue > 0) {
+                msg += `%0AFrete Combinado: R$ ${extraFreightValue.toFixed(2).replace('.',',')}`;
+            } else {
+                msg += `%0A*Aguardando cotação de frete para o meu CEP.*`;
             }
 
-            const sub = shoppingCart.reduce((acc, p) => acc + p.price, 0);
-            const total = sub + selectedFreight;
-            msg += `%0A*Total Final: R$ ${total.toFixed(2).replace('.',',')}*`;
+            const sub = shoppingCart.reduce((a, b) => a + b.price, 0);
+            const total = sub + extraFreightValue;
+            msg += `%0A*Total: R$ ${total.toFixed(2).replace('.',',')}*`;
 
-            const fone = "5500000000000"; 
-            window.open(`https://wa.me/${fone}?text=${msg}`, '_blank');
+            window.open(`https://wa.me/5500000000000?text=${msg}`, '_blank');
         }
 
-        // Funções Originais de Validação e Form
-        function validarQuantidade() {
-            const input = document.getElementById('quantity');
-            if (parseInt(input.value) < 3000) {
-                alert('A quantidade mínima para balas personalizadas é de 3.000 unidades.');
-                input.value = 3000;
+        function payMercadoPago(e) {
+            e.preventDefault();
+            if(shoppingCart.length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
             }
+            window.open(linkMercadoPago, '_blank');
         }
 
-        function enviarPedidoPersonalizado(event) {
-            event.preventDefault();
-            const sabor = document.getElementById('flavor').value;
-            const qtd = document.getElementById('quantity').value;
-            const logo = document.getElementById('logo').files[0];
-
-            let nomeArquivo = logo ? logo.name : "Nenhum arquivo anexado";
-
-            const mensagem = `Olá Tenda Balas! Gostaria de um orçamento para Balas Personalizadas:%0A` +
-                             `- Sabor: ${sabor}%0A` +
-                             `- Quantidade: ${qtd} unidades%0A` +
-                             `- Arquivo da Logo: ${nomeArquivo}`;
-
-            const numeroWhatsApp = "5500000000000"; 
-            window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`, '_blank');
-        }
+        // Inicializar Produtos ao Carregar
+        renderProducts();
     </script>
 </body>
 </html>
